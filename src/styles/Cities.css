@@ -1,0 +1,14 @@
+.hCities{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hCities>input{
+    height: 38px;
+    width: 350px;
+    border: 1px solid #242424;
+    border-radius: 5px;
+}
+.hCities>input::placeholder{
+    font-size: 25px;
+}

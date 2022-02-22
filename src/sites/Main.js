@@ -1,7 +1,6 @@
 import React from 'react'
-import HeroImg from './HeroImg';
-import ActionAreaCard from './Card'
-import Carrousel from './Carrousel'
+import HeroImg from '../components/HeroImg';
+import Carrousel from '../components/Carrousel'
 
 function Main() {
   return (
@@ -9,7 +8,6 @@ function Main() {
       <HeroImg />
       <h1>Popular MyTineraries:</h1>
       <Carrousel />
-      {/* <ActionAreaCard /> */}
     </main>
   )
 }

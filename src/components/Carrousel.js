@@ -1,18 +1,11 @@
-import React, { useRef, useState } from "react";
-// Import Swiper React components
+import Locations from "./Locations";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
-import "./Carrousel.css";
-
-// import required modules
+import "../styles/Carrousel.css";
 import { Autoplay, Pagination, Navigation } from "swiper";
-
-import Locations from "./Locations";
+import {Link as LinkRouter} from 'react-router-dom'; {/*Esto es para poder usar bootstrap sin pisar etiqeutas*/}
 
 export default function Carrousel() {
   return (
@@ -35,12 +28,14 @@ export default function Carrousel() {
         className="mySwiper"
       >
         {Locations.map(Location =>
-          <SwiperSlide>
-            <div className="CartaCarrousel">
-              <img src={Location.image} />
-              <h3>{Location.name}</h3>
-            </div>
-          </SwiperSlide>
+            <LinkRouter to="/city">
+              <SwiperSlide>
+                <div className="CartaCarrousel">
+                  <img src={Location.image} alt="Location"/>
+                  <h3>{Location.name}</h3>
+                </div>
+              </SwiperSlide>
+            </LinkRouter>
           )}
       </Swiper>
     </>

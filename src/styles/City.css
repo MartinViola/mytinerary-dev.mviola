@@ -1,0 +1,22 @@
+.cityContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    min-height: calc(100vh - 64px - 201px); /*resto al vieport el alto del header y del footer*/
+    border: 1px solid black;
+}
+.cityContainer *{
+    border: 1px solid black;
+}
+.backCities{
+    display: flex;
+    flex-direction: row;
+}
+.backCities>p{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}

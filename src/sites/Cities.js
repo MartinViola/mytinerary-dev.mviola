@@ -1,19 +1,26 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import '../styles/Cities.css'
 import { CardActionArea } from '@mui/material';
-import Locations from './Locations';
-import { DataObjectSharp } from '@mui/icons-material';
+import Locations from '../components/Locations';
+import {Link as LinkRouter} from 'react-router-dom'; {/*Esto es para poder usar bootstrap sin pisar etiqeutas*/}
 
-export default function ActionAreaCard() {
-    console.log(Locations);
+export default function CitiesCard() {
+  const [input,setInput]=useState()
   return (
-    <div className="CardsContainer">
-        {/* <h1>Popular MyTineraries:</h1> */}
+    <div>
+      <div className="hCities">
+        <h1>Popular MyTineraries:</h1>
+        <input placeholder="Find your next destination..." onKeyUp={(event)=>setInput(event.target.value)}></input>
+      </div>
+      <div className="CardsContainer">
         {Locations.map(Location => 
         <div className="Card">
+          <LinkRouter to="/city">
             <Card sx={{ maxWidth: 345 }}>
             <CardActionArea>
                 <CardMedia
@@ -29,8 +36,10 @@ export default function ActionAreaCard() {
                 </CardContent>
             </CardActionArea>
             </Card>
+          </LinkRouter>
         </div>
-    )}
+        )}
+      </div>
     </div>
   );
 }
