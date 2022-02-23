@@ -10,6 +10,11 @@ import imgSalta from '../img/salta.webp'
 import imgUshuaia from '../img/ushuaia.webp'
 import imgRiodeJaneiro from '../img/rio_de_janeiro.webp'
 import imgCalafate from '../img/el_calafate.webp'
+import imgBuzios from '../img/buzios.webp'
+import imgDresden from '../img/dresden.webp'
+import imgKoln from '../img/koln.webp'
+import imgLondon from '../img/london.webp'
+import imgParis from '../img/paris.webp'
 
 const Locations = [
     {
@@ -59,6 +64,26 @@ const Locations = [
     {
       name: "El Calafate",
       image: imgCalafate
+    },
+    {
+      name: "Buzios",
+      image: imgBuzios
+    },
+    {
+      name: "Dresden",
+      image: imgDresden
+    },
+    {
+      name: "Köln",
+      image: imgKoln
+    },
+    {
+      name: "London",
+      image: imgLondon
+    },
+    {
+      name: "Paris",
+      image: imgParis
     },
   ];
   export default Locations;

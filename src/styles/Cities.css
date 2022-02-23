@@ -6,9 +6,14 @@
 .hCities>input{
     height: 38px;
     width: 350px;
-    border: 1px solid #242424;
-    border-radius: 5px;
+    /* border: 1px solid #242424; */
+    /* border-radius: 5px; */
+    font-size: 25px;
+
 }
 .hCities>input::placeholder{
     font-size: 25px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0%, -40%);
 }
