@@ -20,7 +20,7 @@ export default function CitiesCard() {
       <div className="CardsContainer">
         {Locations.map(Location => 
         <div className="Card">
-          <LinkRouter to="/city">
+          <LinkRouter to={`/city/${Location.id}`}>
             <Card sx={{ maxWidth: 345 }}>
             <CardActionArea>
                 <CardMedia

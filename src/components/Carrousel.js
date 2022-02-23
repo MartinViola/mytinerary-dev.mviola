@@ -23,13 +23,35 @@ export default function Carrousel() {
         pagination={{
           clickable: true,
         }}
+        breakpoints={{
+          360: {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            slidesPerGroup: 1,
+          },
+          715: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+            slidesPerGroup: 2,
+          },
+          1072: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            slidesPerGroup: 3,
+          },
+          1430: {
+            slidesPerView: 4,
+            spaceBetween: 30,
+            slidesPerGroup: 4,
+          },
+        }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
         {Locations.map(Location =>
           <SwiperSlide>
-            <LinkRouter to="/city">
+            <LinkRouter to={`/city/${Location.id}`}>
               <div className="CartaCarrousel">
                 <img src={Location.image} alt="Location"/>
                 <h3>{Location.name}</h3>

@@ -16,7 +16,7 @@ function App() {
         <Route path="/home" element={<Main />}/>
         <Route path="/cities"  element={<CitiesCard />}/>
         <Route path="*"  element={<Main />}/> 
-        <Route path="/city" element={<City />}/>
+        <Route path="/city/:id" element={<City />}/>
       </Routes>
       <Footer />
     </BrowserRouter>

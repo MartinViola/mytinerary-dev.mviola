@@ -3,5 +3,6 @@ footer button{
     color: #242424 !important;
     font-weight: bold !important;
     margin: 1px !important;
+    width: 176px;
     /* border: 1px solid #242424 !important; */
 }

@@ -1,23 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/City.css';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Construction from '../img/under_construction.png';
+import Locations from '../components/Locations';
+import { useParams } from 'react-router-dom';
 import {Link as LinkRouter} from 'react-router-dom'; {/*Esto es para poder usar bootstrap sin pisar etiqeutas*/}
 
 
 
 function City() {
+  const {id} = useParams()
+  const [citySite, setCity] = React.useState(Locations.filter(Location => Location.id == id))
+
   return (
-    <div className="cityContainer">
-        <h2>Natalia Natalia</h2>
-        <img src={Construction} alt="Construction" />
-        <p>Contenido contenido</p>
+    <div>
+      {citySite.map(city => 
+      <>
+        <div className='cityContainer'>
+          <img className="cityImage" src={city.image} alt="Construction" />
+          <div className='cityDetails'>
+            <h2>{city.name}</h2>
+            <p>More information coming soon!</p>
+            <img src={Construction} alt="Construction" />
+          </div>
+        </div>
         <LinkRouter className="backCities" to="/cities">
-            <ArrowBackIcon fontSize="large"/>
-            <p>back to Cities</p>
+            <ArrowBackIcon fontSize="medium"/>
+            <p> back to Cities</p>
         </LinkRouter>
+      </>
+      )}
     </div>
   )
 }
-
 export default City
