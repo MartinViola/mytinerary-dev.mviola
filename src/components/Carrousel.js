@@ -28,14 +28,14 @@ export default function Carrousel() {
         className="mySwiper"
       >
         {Locations.map(Location =>
+          <SwiperSlide>
             <LinkRouter to="/city">
-              <SwiperSlide>
-                <div className="CartaCarrousel">
-                  <img src={Location.image} alt="Location"/>
-                  <h3>{Location.name}</h3>
-                </div>
-              </SwiperSlide>
+              <div className="CartaCarrousel">
+                <img src={Location.image} alt="Location"/>
+                <h3>{Location.name}</h3>
+              </div>
             </LinkRouter>
+          </SwiperSlide>
           )}
       </Swiper>
     </>
