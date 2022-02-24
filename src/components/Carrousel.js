@@ -53,7 +53,7 @@ export default function Carrousel() {
           <SwiperSlide>
             <LinkRouter to={`/city/${Location.id}`}>
               <div className="CartaCarrousel">
-                <img src={Location.image} alt="Location"/>
+                <img src={process.env.PUBLIC_URL+`/img/${Location.image}`} alt="Location"/>
                 <h3>{Location.name}</h3>
               </div>
             </LinkRouter>

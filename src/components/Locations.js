@@ -1,124 +1,103 @@
-import imgBarcelona from '../img/barcelona.webp'
-import imgBariloche from '../img/bariloche.webp'
-import imgBuenosAires from '../img/buenos_aires.webp'
-import imgCancun from '../img/cancun.webp'
-import imgMadrid from '../img/madrid.webp'
-import imgMiami from '../img/miami.webp'
-import imgNewYork from '../img/new_york.jpeg'
-import imgPuntaCana from '../img/punta_cana.webp'
-import imgSalta from '../img/salta.webp'
-import imgUshuaia from '../img/ushuaia.webp'
-import imgRiodeJaneiro from '../img/rio_de_janeiro.webp'
-import imgCalafate from '../img/el_calafate.webp'
-import imgBuzios from '../img/buzios.webp'
-import imgDresden from '../img/dresden.webp'
-import imgKoln from '../img/koln.webp'
-import imgLondon from '../img/london.webp'
-import imgParis from '../img/paris.webp'
-import imgCappadocia from '../img/cappadocia.jpeg'
-import imgAntalya from '../img/antalya.jpeg'
-import imgIstambul from '../img/istambul.jpeg'
-
 const Locations = [
     {
       id: 1,
       name: "Barcelona",
-      image: imgBarcelona
+      image: "barcelona.webp"
     },
     {
       id: 2,
       name: "Bariloche",
-      image: imgBariloche
+      image: "bariloche.webp"
     },
     {
       id: 3,
       name: "Buenos Aires",
-      image: imgBuenosAires
+      image: "buenos_aires.webp"
     },
     {
       id: 4,
       name: "Cancun",
-      image: imgCancun
+      image: "cancun.webp"
     },
     {
       id: 5,
       name: "Madrid",
-      image: imgMadrid
+      image: "madrid.webp"
     },
     {
       id: 6,
       name: "Miami",
-      image: imgMiami
+      image: "miami.webp"
     },
     {
       id: 7,
       name: "New York",
-      image: imgNewYork
+      image: "new_york.jpeg"
     },
     {
       id: 8,
       name: "Punta Cana",
-      image: imgPuntaCana
+      image: "punta_cana.webp"
     },
     {
       id: 9,
       name: "Salta",
-      image: imgSalta
+      image: "salta.webp"
     },
     {
       id: 10,
       name: "Ushuaia",
-      image: imgUshuaia
+      image: "ushuaia.webp"
     },
     {
       id: 11,
       name: "El Calafate",
-      image: imgCalafate
+      image: "el_calafate.webp"
     },
     {
       id: 12,
       name: "Buzios",
-      image: imgBuzios
+      image: "buzios.webp"
     },
     {
       id: 13,
       name: "Dresden",
-      image: imgDresden
+      image: "dresden.webp"
     },
     {
       id: 14,
-      name: "Köln",
-      image: imgKoln
+      name: "Cologne",
+      image: "koln.webp"
     },
     {
       id: 15,
       name: "London",
-      image: imgLondon
+      image: "london.webp"
     },
     {
       id: 16,
       name: "Paris",
-      image: imgParis
+      image: "paris.webp"
     },
     {
       id: 17,
       name: "Rio de Janeiro",
-      image: imgRiodeJaneiro
+      image: "rio_de_janeiro.webp"
     },
     {
       id: 18,
       name: "Cappadocia",
-      image: imgCappadocia
+      image: "cappadocia.jpeg"
     },
     {
       id: 19,
       name: "Antalya",
-      image: imgAntalya
+      image: "antalya.jpeg"
     },
     {
       id: 20,
       name: "Istambul",
-      image: imgIstambul
+      image: "istambul.jpeg"
     },
   ];
   export default Locations;

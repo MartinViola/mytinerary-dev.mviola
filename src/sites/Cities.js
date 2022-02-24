@@ -26,7 +26,7 @@ export default function CitiesCard() {
                 <CardMedia
                 component="img"
                 height="300"
-                image={Location.image}
+                image={process.env.PUBLIC_URL+`/img/${Location.image}`}
                 alt="Image"
                 />
                 <CardContent>
