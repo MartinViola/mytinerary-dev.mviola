@@ -27,11 +27,23 @@ export default function CitiesCard() {
     filtering(event.target.value);
   }
 
+  // function notFound() {
+  //   var notFound = document.getElementById("notFound");
+  //   notFound.innerHTML = "Unfortunatelly the city you're after could not be found within our recomendations";
+  // }
+
   const filtering = (inputSearch) => {
     var searchResult=apidata2.filter((element)=>{
-      if(element.name.toString().toLowerCase().includes(inputSearch.toLowerCase())){
-        return element;
+      if(element.name.toString().toLowerCase().startsWith(inputSearch.toLowerCase())){
+        return (
+          element
+        )
       }
+      // else{
+      //   return(
+      //     notFound()
+      //   );
+      // }
     });
     setApiData(searchResult);
   }
@@ -41,6 +53,7 @@ export default function CitiesCard() {
       <div className="hCities">
         <h1>Popular MyTineraries:</h1>
         <input placeholder="Find your next destination..." onChange={handleChange}></input>
+        <h2 id="notFound"></h2>
       </div>
       <div className="CardsContainer">
         {apidata.map(Location => 

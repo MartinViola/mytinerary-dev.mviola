@@ -21,9 +21,9 @@ const locationsController = {
     uploadLocations: async (req, res) =>{
         console.log(req.body)
         const{name, country, image}=req.body.dataInput
-        new Locations({name: stadt,
-            country: land,
-            image: bild,
+        new Locations({name: name,
+            country: country,
+            image: image,
             }).save()
         .then((respuesta) => res.json({respuesta}))
     },

@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import CitiesCard from './sites/Cities';
 import City from './sites/City';
+import CRUD from './sites/CRUD';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/cities"  element={<CitiesCard />}/>
         <Route path="*"  element={<Main />}/> 
         <Route path="/city/:_id" element={<City />}/>
+        <Route path="/CRUD" element={<CRUD />}/>
       </Routes>
       <Footer />
     </BrowserRouter>
