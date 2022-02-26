@@ -1,13 +1,24 @@
-import Locations from "./Locations";
+import React, {useEffect, useState} from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "../styles/Carrousel.css";
 import { Autoplay, Pagination, Navigation } from "swiper";
+import { obtainLocations } from '../components/apicalls';
 import {Link as LinkRouter} from 'react-router-dom'; {/*Esto es para poder usar bootstrap sin pisar etiqeutas*/}
 
+
+
 export default function Carrousel() {
+
+  const [apidata, setApiData]=useState([])
+
+  useEffect(()=>{
+    obtainLocations()
+    .then(response=>setApiData(response.data.response.locations))
+  },[])
+
   return (
     <>
       <Swiper
@@ -49,9 +60,9 @@ export default function Carrousel() {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        {Locations.map(Location =>
+        {apidata.map(Location =>
           <SwiperSlide>
-            <LinkRouter to={`/city/${Location.id}`}>
+            <LinkRouter to={`/city/${Location._id}`}>
               <div className="CartaCarrousel">
                 <img src={process.env.PUBLIC_URL+`/img/${Location.image}`} alt="Location"/>
                 <h3>{Location.name}</h3>

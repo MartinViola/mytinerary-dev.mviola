@@ -1,26 +1,51 @@
 import * as React from 'react';
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import '../styles/Cities.css'
 import { CardActionArea } from '@mui/material';
-import Locations from '../components/Locations';
+import { obtainLocations } from '../components/apicalls';
 import {Link as LinkRouter} from 'react-router-dom'; {/*Esto es para poder usar bootstrap sin pisar etiqeutas*/}
 
+
 export default function CitiesCard() {
-  const [input,setInput]=useState()
+  const [input, setInput]=useState("")
+  const [apidata, setApiData]=useState([])
+  const [apidata2, setApiData2]=useState([]) //Lo necesito como AUXILIAR!
+  useEffect(()=>{
+    obtainLocations()
+    .then(response=>{
+      setApiData(response.data.response.locations);
+      setApiData2(response.data.response.locations);
+    })
+  },[])
+
+  const handleChange = event => {
+    setInput(event.target.value);
+    filtering(event.target.value);
+  }
+
+  const filtering = (inputSearch) => {
+    var searchResult=apidata2.filter((element)=>{
+      if(element.name.toString().toLowerCase().includes(inputSearch.toLowerCase())){
+        return element;
+      }
+    });
+    setApiData(searchResult);
+  }
+  
   return (
     <div>
       <div className="hCities">
         <h1>Popular MyTineraries:</h1>
-        <input placeholder="Find your next destination..." onKeyUp={(event)=>setInput(event.target.value)}></input>
+        <input placeholder="Find your next destination..." onChange={handleChange}></input>
       </div>
       <div className="CardsContainer">
-        {Locations.map(Location => 
+        {apidata.map(Location => 
         <div className="Card">
-          <LinkRouter to={`/city/${Location.id}`}>
+          <LinkRouter to={`/city/${Location._id}`}>
             <Card sx={{ maxWidth: 345 }}>
             <CardActionArea>
                 <CardMedia
