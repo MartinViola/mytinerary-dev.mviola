@@ -7,24 +7,28 @@ footer{
     width: calc(100% - 48px);
     height: 128px;
     background-color: #242424;
-    color: #fff;
+    color: #eee;
     display: flex;
     justify-content: space-between;
     /* align-items: center; */
 }
-iframe, .FooterMenu, .ContactContainer{
+iframe, .FooterMenu{
     width: 176px;
 }
 iframe{
     filter: grayscale(100%);
 }
 .ContactContainer{
+    width: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .ContactContainer>div{
+    width: 100%;
     height: 176px;
+    display: flex;
+    justify-content: space-around;
 }
 h4{
     margin-bottom: 25px;
@@ -42,4 +46,8 @@ h4{
     .ContactContainer>div{
         height: 33px;
     }
+}
+.ContactContainer a{
+    text-decoration: none;
+    color: #eee !important;
 }

@@ -25,10 +25,10 @@ h1{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: larger;
+    font-size: 30px;
     font-weight: bolder;
     color: white;
-    text-shadow: 2px 2px 2px #242424;
+    text-shadow: 3px 3px 3px #242424;
 }
 .CartaCarrousel{
     margin-bottom: 25px;

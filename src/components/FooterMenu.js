@@ -2,21 +2,22 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
-import './FooterMenu.css';
+import '../styles/FooterMenu.css';
+import ScrollToTop from './ScrollToTop'
 import {Link as LinkRouter} from 'react-router-dom'; {/*Esto es para poder usar bootstrap sin pisar etiqeutas*/}
 
 
 const buttons = [
   <LinkRouter to="/home">
-  <Button key="Home">Home</Button>
+  <Button onClick={ScrollToTop} key="Home">Home</Button>
   </LinkRouter>
   ,
   <LinkRouter to="/cities">
-  <Button key="Cities">Cities</Button>
+  <Button onClick={ScrollToTop} key="Cities">Cities</Button>
   </LinkRouter>
   ,
   <LinkRouter to="algo">
-  <Button key="Profile">Profile</Button>
+  <Button onClick={ScrollToTop} key="Profile">Profile</Button>
   </LinkRouter>
   ,
 ];

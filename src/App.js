@@ -1,10 +1,12 @@
-import './App.css';
-import MenuAppBar from './components/Appbar';
-import Main from './components/Main';
-import Footer from './components/Footer';
 import React from 'react';
+import './styles/App.css';
+import MenuAppBar from './components/Appbar';
+import Main from './sites/Main';
+import Footer from './components/Footer';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import ActionAreaCard from './components/Card';
+import CitiesCard from './sites/Cities';
+import City from './sites/City';
+import CRUD from './sites/CRUD';
 
 function App() {
   return (
@@ -13,8 +15,10 @@ function App() {
       <MenuAppBar />
       <Routes>
         <Route path="/home" element={<Main />}/>
-        <Route path="/cities"  element={<ActionAreaCard />}/>
+        <Route path="/cities"  element={<CitiesCard />}/>
         <Route path="*"  element={<Main />}/> 
+        <Route path="/city/:_id" element={<City />}/>
+        <Route path="/CRUD" element={<CRUD />}/>
       </Routes>
       <Footer />
     </BrowserRouter>

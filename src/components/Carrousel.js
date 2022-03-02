@@ -1,20 +1,24 @@
-import React, { useRef, useState } from "react";
-// Import Swiper React components
+import React, {useEffect, useState} from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
-import "./Carrousel.css";
-
-// import required modules
+import "../styles/Carrousel.css";
 import { Autoplay, Pagination, Navigation } from "swiper";
+import { obtainLocations } from '../components/apicalls';
+import {Link as LinkRouter} from 'react-router-dom'; {/*Esto es para poder usar bootstrap sin pisar etiqeutas*/}
 
-import Locations from "./Locations";
+
 
 export default function Carrousel() {
+
+  const [apidata, setApiData]=useState([])
+
+  useEffect(()=>{
+    obtainLocations()
+    .then(response=>setApiData(response.data.response.locations))
+  },[])
+
   return (
     <>
       <Swiper
@@ -30,16 +34,40 @@ export default function Carrousel() {
         pagination={{
           clickable: true,
         }}
+        breakpoints={{
+          360: {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            slidesPerGroup: 1,
+          },
+          715: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+            slidesPerGroup: 2,
+          },
+          1072: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            slidesPerGroup: 3,
+          },
+          1430: {
+            slidesPerView: 4,
+            spaceBetween: 30,
+            slidesPerGroup: 4,
+          },
+        }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        {Locations.map(Location =>
+        {apidata.map(Location =>
           <SwiperSlide>
-            <div className="CartaCarrousel">
-              <img src={Location.image} />
-              <h3>{Location.name}</h3>
-            </div>
+            <LinkRouter to={`/city/${Location._id}`}>
+              <div className="CartaCarrousel">
+                <img src={process.env.PUBLIC_URL+`/img/${Location.image}`} alt="Location"/>
+                <h3>{Location.name}</h3>
+              </div>
+            </LinkRouter>
           </SwiperSlide>
           )}
       </Swiper>
