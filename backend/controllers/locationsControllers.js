@@ -19,7 +19,6 @@ const locationsController = {
         })
     },
     uploadLocations: async (req, res) =>{
-        console.log(req.body)
         const{name, country, image}=req.body.dataInput
         new Locations({name: name,
             country: country,
@@ -29,8 +28,14 @@ const locationsController = {
     },
     deleteLocations: async (req,res)=>{
         const id = req.params.id
-        console.log(req.params)
         await Locations.findOneAndDelete({_id:id})
+    },
+    modifyLocation: async (req, res) => {
+        const id = req.params.id
+        const location = req.body.dataInput
+        let ciudadB = await Locations.findOneAndUpdate({_id:id}, location)
+        console.log(ciudadB)
+        // Locations.findOneAndUpdate({_id:id},location,{new:true})
     }
 
 }

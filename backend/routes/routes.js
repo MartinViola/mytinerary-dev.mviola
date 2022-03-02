@@ -3,7 +3,7 @@ const Router = require('express').Router();
 // const locationsControllers 
 const locationsController = require('../controllers/locationsControllers')
 
-const {obtainLocations, uploadLocations, deleteLocations} = locationsController
+const {obtainLocations, uploadLocations, deleteLocations, modifyLocation} = locationsController
 
 Router.route('/alllocations')
 .get(obtainLocations)
@@ -11,5 +11,6 @@ Router.route('/alllocations')
 
 Router.route('/alllocations/:id')
 .delete(deleteLocations)
+.put(modifyLocation)
 
 module.exports = Router

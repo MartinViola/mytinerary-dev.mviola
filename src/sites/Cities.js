@@ -33,18 +33,23 @@ export default function CitiesCard() {
   // }
 
   const filtering = (inputSearch) => {
+    var noresult = 0
     var searchResult=apidata2.filter((element)=>{
-      if(element.name.toString().toLowerCase().startsWith(inputSearch.toLowerCase())){
+      if(element.name.toString().toLowerCase().startsWith(inputSearch.toLowerCase().trim()) || element.country.toString().toLowerCase().startsWith(inputSearch.toLowerCase().trim())){
         return (
           element
         )
       }
-      // else{
-      //   return(
-      //     notFound()
-      //   );
-      // }
+      // else return(
+      //   noresult = noresult +1
+      //   )
     });
+    // if(noresult == apidata2.lenght){
+    //   return(
+    //     inputSearch
+    //   )
+    // }
+
     setApiData(searchResult);
   }
   
