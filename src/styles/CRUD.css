@@ -1,0 +1,15 @@
+.mainContainerCRUD{
+    margin: 16px 0 0 16px;
+}
+table>tr>th{
+    border-bottom: 3px solid black;
+}
+table>tr>td{
+    border-bottom: 1px solid black;
+}
+.mainContainerCRUD span{
+    color: red;
+}
+.buttonCell>button{
+    width: 100%;
+}

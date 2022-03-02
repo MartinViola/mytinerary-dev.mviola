@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import '../styles/Cities.css'
 import { CardActionArea } from '@mui/material';
 import { obtainLocations } from '../components/apicalls';
-import {Link as LinkRouter} from 'react-router-dom'; {/*Esto es para poder usar bootstrap sin pisar etiqeutas*/}
+import {Link as LinkRouter} from 'react-router-dom';
 
 
 export default function CitiesCard() {
@@ -33,23 +33,13 @@ export default function CitiesCard() {
   // }
 
   const filtering = (inputSearch) => {
-    var noresult = 0
     var searchResult=apidata2.filter((element)=>{
       if(element.name.toString().toLowerCase().startsWith(inputSearch.toLowerCase().trim()) || element.country.toString().toLowerCase().startsWith(inputSearch.toLowerCase().trim())){
         return (
           element
         )
       }
-      // else return(
-      //   noresult = noresult +1
-      //   )
     });
-    // if(noresult == apidata2.lenght){
-    //   return(
-    //     inputSearch
-    //   )
-    // }
-
     setApiData(searchResult);
   }
   
@@ -58,10 +48,11 @@ export default function CitiesCard() {
       <div className="hCities">
         <h1>Popular MyTineraries:</h1>
         <input placeholder="Find your next destination..." onChange={handleChange}></input>
-        <h2 id="notFound"></h2>
+        
       </div>
       <div className="CardsContainer">
-        {apidata.map(Location => 
+        {/*INICIO ternario idenfificando item no encontrado*/} 
+        {apidata.length > 0 ? apidata.map(Location =>    
         <div className="Card">
           <LinkRouter to={`/city/${Location._id}`}>
             <Card sx={{ maxWidth: 345 }}>
@@ -81,7 +72,8 @@ export default function CitiesCard() {
             </Card>
           </LinkRouter>
         </div>
-        )}
+        ) : <h2>Whoops!...Unfortunatelly the city you're after could not be found within our recomendations</h2> }  
+        {/*fin ternario idenfificando item no encontrado*/} 
       </div>
     </div>
   );
