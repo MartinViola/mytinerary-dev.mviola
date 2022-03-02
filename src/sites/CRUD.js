@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/CRUD.css';
-import {Link as LinkRouter} from 'react-router-dom';
 import { obtainLocations, uploadLocations, deleteLocations, modifyLocation } from '../components/apicalls';
-import { AirlineSeatReclineExtraOutlined, AirlineSeatReclineNormalRounded, FormatColorReset } from '@mui/icons-material';
 
 
 
@@ -58,7 +56,8 @@ function CRUD() {
 
 
   return (
-    <div>
+    <div className='mainContainerCRUD'>
+        <h1><span>C</span>reate <span>R</span>ead <span>U</span>pdate <span>D</span>elete</h1>
         <div>
             <h2>Create location (add item to DB)</h2>
             <form onSubmit={handleSubmit}>
@@ -72,17 +71,34 @@ function CRUD() {
             </form>
         </div>
         <div>
-            <h2>Remove location (delete item from DB)</h2>
-            {apidata?.map(Location =>
-            <ul>
-                <li>{Location.name}, {Location.country}, {Location.image} <button onClick={()=>deleteCity(Location._id)}>DELETE</button><button onClick={()=>setModId(Location._id)}>MODIFY</button>
-                </li>
+            <h2>Current DB</h2>
+            <table>
+                <tr>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>img_name.ext</th>
+                    <th>Delete from DB</th>
+                    <th>Update at DB</th>
+                </tr>
+                {apidata?.map(Location =>
+                <tr>
+                    <td>{Location.name}</td>
+                    <td>{Location.country}</td>
+                    <td>{Location.image}</td>
+                    <td className='buttonCell'><button onClick={()=>deleteCity(Location._id)}>DELETE</button></td>
+                    <td className='buttonCell'><button onClick={()=>setModId(Location._id)}>UPDATE</button></td>
+                </tr>
+            // <ul>
+            //     <li>{Location.name}, {Location.country}, {Location.image} <button onClick={()=>deleteCity(Location._id)}>DELETE</button><button onClick={()=>setModId(Location._id)}>MODIFY</button>
+            //     </li>
 
-            </ul>
-            )}
+            // </ul>
+                )}
+            </table>
         </div>
         <div>
             <h2>Update location (modify item in DB)</h2>
+            <p><span>Important:</span> Please select (click) on the table above the element that will be modified</p>
             <form onSubmit={modifyDB}>
                 <label for="city">City:</label>
                 <input id="city" type="text"></input>
