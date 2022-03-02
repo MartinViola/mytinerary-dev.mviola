@@ -22,7 +22,7 @@ function CRUD() {
         var dataInput ={
             name: 'Berlin',
             country: 'Germany',
-            image: 'berlin.webp',
+            image: 'berlin.jpeg',
         };
         // var dataInput ={
         //     name: data.get('city'),
@@ -40,7 +40,7 @@ function CRUD() {
         var dataInput ={
             name: 'Berlin',
             country: 'Germany',
-            image: 'berlin.jpeg',
+            image: 'berlin.webp',
         };
         // var dataInput ={
         //     name: data.get('city'),
