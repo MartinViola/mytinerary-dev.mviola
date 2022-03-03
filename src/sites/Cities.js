@@ -27,11 +27,6 @@ export default function CitiesCard() {
     filtering(event.target.value);
   }
 
-  // function notFound() {
-  //   var notFound = document.getElementById("notFound");
-  //   notFound.innerHTML = "Unfortunatelly the city you're after could not be found within our recomendations";
-  // }
-
   const filtering = (inputSearch) => {
     var searchResult=apidata2.filter((element)=>{
       if(element.name.toString().toLowerCase().startsWith(inputSearch.toLowerCase().trim()) || element.country.toString().toLowerCase().startsWith(inputSearch.toLowerCase().trim())){
