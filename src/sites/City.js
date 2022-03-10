@@ -23,22 +23,24 @@ function City(props) {
     props.fetchOneLocation(_id)
   },[]);
 
+  console.log(props)
+
   return (
     <div>
         {props.oneCity[0] && 
       <>
         <div className="allcityContainer">
           <div className='cityContainer'>
-            <img className="cityImage" src={process.env.PUBLIC_URL+`/img/${props.oneCity[0].image}`} alt="image" />
             <div className='cityDetails'>
               <h2 className="locationTitle">{props.oneCity[0].name}</h2>
               <h3 className="locationTitle">{props.oneCity[0].country}</h3>
             </div>
+            <img className="cityImage" src={process.env.PUBLIC_URL+`/img/${props.oneCity[0].image}`} alt="image" />
           </div>
           <div className="containerItineraries">
             <h2 className="h1Itineraries">{props.oneCity.name} Itineraries:</h2>
             {props.cityItineraries.length > 0 ? props.cityItineraries.map(Itinerary =>
-              <div>
+              <div className='divAccordion' >
                 <Accordion>
                   <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
                     <div className="containerItineraryInfo">

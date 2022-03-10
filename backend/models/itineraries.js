@@ -9,7 +9,9 @@ const itinerariesSchema = new mongoose.Schema({
     creator: {type: String, required:true},
     creatorImage: {type: String, required:true},
     likes: {type: Number, required:true},
-    hastags: {type: Array, required:true}
+    hastags: {type: Array, required:true},
+    comments:{type: String},
+    activities_id: {type: Array},
 })
 
 const Itineraries = mongoose.model('itineraries', itinerariesSchema)
