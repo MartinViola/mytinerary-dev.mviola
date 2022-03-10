@@ -2,7 +2,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-grow: 1;
 
@@ -13,6 +13,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-top: 1rem;
 }
 .backCities>p{
     /* color: #242424; */
@@ -21,34 +22,39 @@
     align-items: center;
 }
 .cityDetails{
-    /* height: 300px; */
+    width: 690px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between !important;
-    margin-left: 10px;
+    margin-top: 1rem;
 }
 .cityImage{
+    margin-top: 1rem;
     height: 300px;
     width: 690px;
     object-fit: cover;
     margin-right: 10px;
     box-shadow: 2px 2px 10px #242424;
 }
-.cityDetails>img{
+/* .cityDetails>img{
     width: 345px;
     box-shadow: 2px 2px 10px #242424;
-}
+} */
 .containerItineraries{
     width: 690px;
+}
+.cityDetails>h2, .cityDetails>h3{
+    align-self: flex-start;
 }
 .allcityContainer{
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    /* min-height: calc(100vh - 64px - 201px - 24px); resto al vieport el alto del header y del footer */
+    /* min-height: calc(100vh - 64px - 24px); */
 }
 .h1Itineraries{
+    margin-top: 1rem;
     text-align: left;
 }
 .containerItineraryInfo{
@@ -65,6 +71,9 @@
 .locationTitle{
     text-align: center;
 }
+.divAccordion{
+    margin-top: 1rem;
+}
 .authorContainer{
     height: 100px;
     display: flex;
@@ -74,7 +83,10 @@
 .imgAuthor{
     height: 100px;
     width: 100px;
-    object-fit: contain;
+    object-fit: cover;
+}
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root {
+    background-color: #777777 !important;
 }
 @media screen and (max-width:800px) {
     .cityContainer{
