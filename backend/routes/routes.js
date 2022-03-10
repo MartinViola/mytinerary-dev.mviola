@@ -6,7 +6,7 @@ const itinerariesController = require('../controllers/itinerariesControllers');
 const { Route } = require('react-router-dom');
 
 const {obtainLocations, uploadLocations, deleteLocations, modifyLocation, obtainOneLocation} = locationsController
-const {obtainItineraries, obtainOneItinerary} = itinerariesController
+const {obtainItineraries, obtainOneItinerary, uploadNewItinerary, deleteOneItinerary, modifyOneItinerary} = itinerariesController
 
 Router.route('/alllocations')
 .get(obtainLocations)
@@ -19,9 +19,12 @@ Router.route('/alllocations/:id')
 
 Router.route('/allitineraries')
 .get(obtainItineraries)
+.post(uploadNewItinerary)
 
 Router.route('/allitineraries/:id')
 .get(obtainOneItinerary)
+.delete(deleteOneItinerary)
+.put(modifyOneItinerary)
 
 
 module.exports = Router
