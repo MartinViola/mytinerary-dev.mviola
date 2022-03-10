@@ -1,53 +1,34 @@
 import * as React from 'react';
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import '../styles/Cities.css'
 import { CardActionArea } from '@mui/material';
-import { obtainLocations } from '../components/apicalls';
 import {Link as LinkRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+import citiesActions from '../redux/actions/citiesActions';
 
-
-export default function CitiesCard() {
-  const [input, setInput]=useState("")
-  const [apidata, setApiData]=useState([])
-  const [apidata2, setApiData2]=useState([]) //Lo necesito como AUXILIAR!
+function CitiesCard(props) {
+  
   useEffect(()=>{
-    obtainLocations()
-    .then(response=>{
-      setApiData(response.data.response.locations);
-      setApiData2(response.data.response.locations);
-    })
-  },[])
+    props.fetchLocations()
+  },[]);
 
-  const handleChange = event => {
-    setInput(event.target.value);
-    filtering(event.target.value);
-  }
-
-  const filtering = (inputSearch) => {
-    var searchResult=apidata2.filter((element)=>{
-      if(element.name.toString().toLowerCase().startsWith(inputSearch.toLowerCase().trim()) || element.country.toString().toLowerCase().startsWith(inputSearch.toLowerCase().trim())){
-        return (
-          element
-        )
-      }
-    });
-    setApiData(searchResult);
-  }
+  const filteringLocations = (event) => {
+    props.filterLocations(props.cities, event.target.value)
+  };
   
   return (
     <div>
       <div className="hCities">
         <h1>Popular MyTineraries:</h1>
-        <input placeholder="Find your next destination..." onChange={handleChange}></input>
-        
+        <input placeholder="Find your next destination..." onChange={filteringLocations}></input>
       </div>
       <div className="CardsContainer">
         {/*INICIO ternario idenfificando item no encontrado*/} 
-        {apidata.length > 0 ? apidata.map(Location =>    
+        {props.filterCities.length > 0 ? props.filterCities.map(Location =>   
         <div className="Card">
           <LinkRouter to={`/city/${Location._id}`}>
             <Card sx={{ maxWidth: 345 }}>
@@ -73,3 +54,17 @@ export default function CitiesCard() {
     </div>
   );
 }
+
+const mapDispatchToProps = {
+  fetchLocations: citiesActions.fetchLocations,
+  filterLocations: citiesActions.filterLocations,
+
+}
+const mapStateToProps = (state) => {
+  return {
+    cities: state.citiesReducer.cities,
+    filterCities : state.citiesReducer.filterCities
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(CitiesCard)

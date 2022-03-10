@@ -1,23 +1,19 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "../styles/Carrousel.css";
 import { Autoplay, Pagination, Navigation } from "swiper";
-import { obtainLocations } from '../components/apicalls';
-import {Link as LinkRouter} from 'react-router-dom'; {/*Esto es para poder usar bootstrap sin pisar etiqeutas*/}
+import {Link as LinkRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+import citiesActions from '../redux/actions/citiesActions';
 
-
-
-export default function Carrousel() {
-
-  const [apidata, setApiData]=useState([])
+function Carrousel(props) {
 
   useEffect(()=>{
-    obtainLocations()
-    .then(response=>setApiData(response.data.response.locations))
-  },[])
+    props.fetchLocations()
+  },[]);
 
   return (
     <>
@@ -60,7 +56,8 @@ export default function Carrousel() {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        {apidata.map(Location =>
+        {/* { props.cities && props.cities.map((Location) => { */}
+        {props.cities.length > 0 ? props.cities.map(Location => 
           <SwiperSlide>
             <LinkRouter to={`/city/${Location._id}`}>
               <div className="CartaCarrousel">
@@ -69,8 +66,20 @@ export default function Carrousel() {
               </div>
             </LinkRouter>
           </SwiperSlide>
-          )}
+        ) : <p>Loading...</p>
+        }
       </Swiper>
     </>
   );
 }
+
+const mapDispatchToProps = {
+  fetchLocations: citiesActions.fetchLocations,
+}
+const mapStateToProps = (state) => {
+  return {
+    cities: state.citiesReducer.cities,
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Carrousel)
