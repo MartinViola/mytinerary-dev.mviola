@@ -3,21 +3,20 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Box from '@mui/material/Box';
 import '../styles/FooterMenu.css';
-import ScrollToTop from './ScrollToTop'
 import {Link as LinkRouter} from 'react-router-dom'; {/*Esto es para poder usar bootstrap sin pisar etiqeutas*/}
 
 
 const buttons = [
-  <LinkRouter to="/home">
-  <Button onClick={ScrollToTop} key="Home">Home</Button>
+  <LinkRouter key={1} to="/home">
+  <Button key="Home">Home</Button>
   </LinkRouter>
   ,
-  <LinkRouter to="/cities">
-  <Button onClick={ScrollToTop} key="Cities">Cities</Button>
+  <LinkRouter key={2} to="/cities">
+  <Button key="Cities">Cities</Button>
   </LinkRouter>
   ,
-  <LinkRouter to="algo">
-  <Button onClick={ScrollToTop} key="Profile">Profile</Button>
+  <LinkRouter key={3} to="algo">
+  <Button key="Profile">Profile</Button>
   </LinkRouter>
   ,
 ];

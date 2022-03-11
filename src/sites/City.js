@@ -18,15 +18,14 @@ function City(props) {
   let {_id} = useParams();
 
   useEffect(()=>{
-    props.fetchItineraries()
+    window.scrollTo(0, 0)
+    // props.fetchItineraries()
     props.fetchOneItinerary(_id)
     props.fetchOneLocation(_id)
   },[]);
 
-  console.log(props)
-
   return (
-    <div>
+    <div className="containerOneCityDetailsSite">
         {props.oneCity[0] && 
       <>
         <div className="allcityContainer">
@@ -45,10 +44,10 @@ function City(props) {
                   <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
                     <div className="containerItineraryInfo">
                       <h3>{Itinerary.itinerary}</h3>
-                      <div>
-                        <p>Duration: {Itinerary.duration}</p>
-                        <p>Price: {Itinerary.price}</p>
-                        <p>Likes: {Itinerary.likes}</p>
+                      <div className="containerItineraryDurationPriceLikes">
+                        <p>Duration: {Itinerary.duration} </p>
+                        <p>Price: {Itinerary.price} </p>
+                        <p>Likes: {Itinerary.likes} </p>
                       </div>
                     </div>
                     {/* <Typography>Accordion 1</Typography> */}
@@ -60,7 +59,7 @@ function City(props) {
                     <p>{Itinerary.hashtags}</p>
                     <div className="authorContainer">
                       <img className="imgAuthor" src={process.env.PUBLIC_URL+`/img/${Itinerary.creatorImage}`} alt="author" />
-                      <p>Author: {Itinerary.creator}</p>
+                      <p>Insider: {Itinerary.creator}</p>
                     </div>
                   </AccordionDetails>
                 </Accordion>
