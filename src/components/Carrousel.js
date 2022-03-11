@@ -58,7 +58,7 @@ function Carrousel(props) {
       >
         {/* { props.cities && props.cities.map((Location) => { */}
         {props.cities.length > 0 ? props.cities.map(Location => 
-          <SwiperSlide>
+          <SwiperSlide key={Location._id}>
             <LinkRouter to={`/city/${Location._id}`}>
               <div className="CartaCarrousel">
                 <img src={process.env.PUBLIC_URL+`/img/${Location.image}`} alt="Location"/>

@@ -13,6 +13,7 @@ import citiesActions from '../redux/actions/citiesActions';
 function CitiesCard(props) {
   
   useEffect(()=>{
+    window.scrollTo(0, 0)
     props.fetchLocations()
   },[]);
 
@@ -21,7 +22,7 @@ function CitiesCard(props) {
   };
   
   return (
-    <div>
+    <div className="containerCitiesSite">
       <div className="hCities">
         <h1>Popular MyTineraries:</h1>
         <input placeholder="Find your next destination..." onChange={filteringLocations}></input>
@@ -29,7 +30,7 @@ function CitiesCard(props) {
       <div className="CardsContainer">
         {/*INICIO ternario idenfificando item no encontrado*/} 
         {props.filterCities.length > 0 ? props.filterCities.map(Location =>   
-        <div className="Card">
+        <div key={Location._id} className="Card">
           <LinkRouter to={`/city/${Location._id}`}>
             <Card sx={{ maxWidth: 345 }}>
             <CardActionArea>
@@ -39,7 +40,7 @@ function CitiesCard(props) {
                 image={process.env.PUBLIC_URL+`/img/${Location.image}`}
                 alt="Image"
                 />
-                <CardContent>
+                <CardContent key={Location._id}>
                 <Typography gutterBottom variant="h5" component="div">
                     {Location.name}
                 </Typography>

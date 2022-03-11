@@ -10,7 +10,6 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Button from '@mui/material/Button';
 import '../styles/Appbar.css';
-import ScrollToTop from './ScrollToTop'
 import {Link as LinkRouter} from 'react-router-dom'; {/*Esto es para poder usar bootstrap sin pisar etiqeutas*/}
 
 export default function MenuAppBar() {
@@ -41,13 +40,13 @@ export default function MenuAppBar() {
             </IconButton>
             <div className="overlay">
               <LinkRouter to="/home">
-                <Button onClick={ScrollToTop} className="text" key="/">Home</Button>
+                <Button className="text" key="/">Home</Button>
               </LinkRouter>
               <LinkRouter to="/cities">
-                <Button onClick={ScrollToTop} className="text" key="/cities">Cities</Button>
+                <Button className="text" key="/cities">Cities</Button>
               </LinkRouter>
               <LinkRouter to="algo">
-                <Button onClick={ScrollToTop} className="text" key="algo2">Profile</Button>
+                <Button className="text" key="algo2">Profile</Button>
               </LinkRouter>
             </div>
           </div>
