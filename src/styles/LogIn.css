@@ -10,7 +10,7 @@
     /* align-self: center; */
 }
 .logInContenContainer{
-    background-color: #4343437e;
+    background-color: rgba(255, 255, 255, 0.5);
     padding: 1rem;
     margin-top: 1rem;
     display: flex;

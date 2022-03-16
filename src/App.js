@@ -10,14 +10,14 @@ import CRUD from './sites/CRUD';
 import SignUp from './sites/SignUp'
 import LogIn from './sites/LogIn'
 import UserProfile from './sites/UserProfile'
-import Container from './sites/container'
+// import Container from './sites/container'
 
 function App() {
   return (
     <>
     <BrowserRouter>
       <MenuAppBar />
-      <Container />
+      {/* <Container /> */}
       <Routes>
         <Route path="/home" element={<Main />}/>
         <Route path="/cities"  element={<CitiesCard />}/>

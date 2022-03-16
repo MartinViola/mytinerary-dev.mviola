@@ -10,7 +10,7 @@
     /* align-self: center; */
 }
 .signupContenContainer{
-    background-color: #4343437e;
+    background-color: rgba(255, 255, 255, 0.5);
     padding: 1rem;
     margin-top: 1rem;
     display: flex;
@@ -31,4 +31,9 @@
 }
 .signupContenContainer>p, .signupContenContainer>h2{
     margin-top: 1rem;
+}
+.socialButtonsContainer{
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }

@@ -39,3 +39,15 @@ header {
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
   }
+  .userLoggedIn{
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid orange;
+    /* box-shadow: 2px 2px 5px snow; */
+  }
+  .buttonUserContainer{
+    margin: 0 !important;
+    padding: 0 !important;
+  }

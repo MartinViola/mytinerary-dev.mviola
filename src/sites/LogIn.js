@@ -3,6 +3,8 @@ import '../styles/LogIn.css';
 import {Link as LinkRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import userActions from '../redux/actions/userActions';
+import FacebookSignUp from '../components/FacebookSignUp'; //HAY QUE AJUSTARLO A LOGIN
+import GoogleSignUp from '../components/GoogleSignUp';   //HAY QUE AJUSTARLO A LOGIN
 
 
 function LogIn(props) {
@@ -26,6 +28,11 @@ function LogIn(props) {
             <input type="password" name="userPassword" placeholder='Password'></input>
             <button type='submit'>Log in</button>
         </form>
+        <p>You can also log in with:</p>
+          <div className='socialButtonsContainer'>
+              <FacebookSignUp />
+              <GoogleSignUp />
+          </div>
         <p>Don't have an account? <LinkRouter to="/signup">Sign up</LinkRouter></p>
       </div>
     </div>
