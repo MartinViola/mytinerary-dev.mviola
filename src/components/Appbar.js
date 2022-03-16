@@ -30,8 +30,6 @@ function MenuAppBar(props) {
     // handleClose()
 	}
 
-  console.log(props)
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" className="classAppBar">

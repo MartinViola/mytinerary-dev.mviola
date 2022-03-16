@@ -7,18 +7,19 @@ import '../styles/SocialButton.css'
 function FacebookSignUp(props) {
 
     const responseFacebook = async (res) => {
-        console.log(res)
         //Para separar nombre y apellido
         const splitFullName = res.name.split(" ")
         let FirstName = splitFullName[0]
         let LastName = splitFullName[1]
-        console.log(FirstName)
-        console.log(LastName)
 
         const userData={
             userFirstname: FirstName,
+            userLastname: LastName,
             userEmail: res.email,
             userPassword: res.id,
+            userPhotoURL: res.picture.data.url,
+            userCountry: "TBD",
+            userEmailVerified: true,
             from: "facebook",
         }
         await props.userRegistration(userData)
