@@ -70,8 +70,8 @@ function MenuAppBar(props) {
                   onClick={handleMenu}
                   color="inherit"
                 >
-                  <img className="userLoggedIn" src={process.env.PUBLIC_URL+`/img/maria_casillas.jpg`} alt="author" />
-                  {/* <AccountCircle className="userLoggedIn"/> */}
+                  {/* <img className="userLoggedIn" src={process.env.PUBLIC_URL+`/img/maria_casillas.jpg`} alt="author" /> */}
+                  <img className="userLoggedIn" src={props.user.userPhotoURL} alt="author" />
                 </IconButton>
                 <Menu
                   id="menu-appbar"

@@ -64,6 +64,7 @@ const userController = {
                         const userData = {
                             userFirstname: userExists.userFirstname,
                             userEmail: userExists.userEmail,
+                            userPhotoURL: userExists.userPhotoURL,
                             from: userExists.from,
                         }
                         await userExists.save()
@@ -80,6 +81,7 @@ const userController = {
                         const userData ={
                             userFirstname: userExists.userFirstname,
                             userEmail: userExists.userEmail,
+                            userPhotoURL: userExists.userPhotoURL,
                             from: userExists.from,
                         }
                         res.json({success: true, from: from, response: {userData}, message: "Welcome back "+userData.userFirstname})

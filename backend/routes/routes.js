@@ -8,6 +8,7 @@ const { Route } = require('react-router-dom');
 const {obtainLocations, uploadLocations, deleteLocations, modifyLocation, obtainOneLocation} = locationsController
 const {obtainItineraries, obtainOneItinerary, uploadNewItinerary, deleteOneItinerary, modifyOneItinerary} = itinerariesController
 const {userRegistration, userLogIn, userLogOut, userEmailVerification}= usersControllers
+// const passport = require('../models/user')
 
 
 Router.route('/alllocations')
