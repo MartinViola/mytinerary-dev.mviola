@@ -1,12 +1,14 @@
 const Router = require('express').Router();
 
-// const locationsControllers 
 const locationsController = require('../controllers/locationsControllers')
 const itinerariesController = require('../controllers/itinerariesControllers');
+const usersControllers = require('../controllers/userControllers');
 const { Route } = require('react-router-dom');
 
 const {obtainLocations, uploadLocations, deleteLocations, modifyLocation, obtainOneLocation} = locationsController
 const {obtainItineraries, obtainOneItinerary, uploadNewItinerary, deleteOneItinerary, modifyOneItinerary} = itinerariesController
+const {userRegistration, userLogIn, userLogOut, userEmailVerification}= usersControllers
+
 
 Router.route('/alllocations')
 .get(obtainLocations)
@@ -26,5 +28,13 @@ Router.route('/allitineraries/:id')
 .delete(deleteOneItinerary)
 .put(modifyOneItinerary)
 
+Router.route('/auth/registration')
+.post(userRegistration)
+
+Router.route('/auth/login')
+.post(userLogIn)
+
+Router.route('/auth/logout')
+.post(userLogOut)
 
 module.exports = Router

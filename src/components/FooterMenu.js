@@ -15,8 +15,8 @@ const buttons = [
   <Button key="Cities">Cities</Button>
   </LinkRouter>
   ,
-  <LinkRouter key={3} to="algo">
-  <Button key="Profile">Profile</Button>
+  <LinkRouter key={3} to="/userprofile">
+  <Button key="Profile">My Profile</Button>
   </LinkRouter>
   ,
 ];

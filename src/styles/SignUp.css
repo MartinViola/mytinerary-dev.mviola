@@ -1,0 +1,34 @@
+.signupContainer{
+    min-height: calc(100vh - 64px - 176px); /*Altura requerida para enviar el footer al fondo, esto se puede dinamizar con display flex, pero ojo que hay que corregir todo el sitio*/
+    width: 100%;
+    background-image: url('/public/img/Hero.jpg');
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    /* align-self: center; */
+}
+.signupContenContainer{
+    background-color: #4343437e;
+    padding: 1rem;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.signupFormContainer{
+    width: 375px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.signupFormContainer>input, .signupFormContainer>button, .signupFormContainer>select{
+    margin-top: 1rem;
+    width: 100%;
+    font-size: large;
+}
+.signupContenContainer>p, .signupContenContainer>h2{
+    margin-top: 1rem;
+}

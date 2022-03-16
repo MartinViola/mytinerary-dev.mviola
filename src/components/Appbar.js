@@ -45,7 +45,7 @@ export default function MenuAppBar() {
               <LinkRouter to="/cities">
                 <Button className="text" key="/cities">Cities</Button>
               </LinkRouter>
-              <LinkRouter to="algo">
+              <LinkRouter to="/userprofile">
                 <Button className="text" key="algo2">Profile</Button>
               </LinkRouter>
             </div>
@@ -78,8 +78,16 @@ export default function MenuAppBar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <LinkRouter to="/signup">
+                  <MenuItem onClick={handleClose}>Sign up</MenuItem>
+                </LinkRouter>
+                <LinkRouter to="/login">
+                  <MenuItem onClick={handleClose}>Log in</MenuItem>
+                </LinkRouter>
+                <LinkRouter to="/userprofile">
+                  <MenuItem onClick={handleClose}>My profile</MenuItem>
+                </LinkRouter>
+                <MenuItem onClick={handleClose}>Log out</MenuItem>
               </Menu>
             </div>
           )}
