@@ -19,6 +19,7 @@ const userActions = {
         return async (dispatch, getState)=>{
             const user = await axios.post('http://localhost:4000/api/auth/login',{loggedUserData})
             if(user.data.success){
+                localStorage.setItem('token', user.data.response.token)
                 dispatch({type: 'user', 
                 payload: {
                     user: user.data.response.userData,
@@ -44,6 +45,7 @@ const userActions = {
     userLogOut: (closeUser)=>{
         return async (dispatch, getState) =>{
             const user = axios.post('http://localhost:4000/api/auth/logout',{closeUser})
+            localStorage.removeItem('token')
             dispatch({type: 'user', 
             payload: {
                 user: null,

@@ -2,6 +2,7 @@ const User = require('../models/user')
 const bcryptjs = require('bcryptjs')
 const crypto = require('crypto')
 const nodemailer = require('nodemailer')
+const jwt = require('jsonwebtoken')
 
 const sendEmail = async (email, uniqueString) => {
 
@@ -113,13 +114,20 @@ const userController = {
                     let passwordMatches = userExists.userPassword.filter(pass => bcryptjs.compareSync(userPassword, pass))
                     if (passwordMatches.length > 0){
                         const userData = {
+                            userId: userExists._id,
                             userFirstname: userExists.userFirstname,
                             userEmail: userExists.userEmail,
                             userPhotoURL: userExists.userPhotoURL,
                             from: userExists.from,
                         }
                         await userExists.save()
-                        res.json({success: true, from: from, response: {userData}, message: "Welcome back "+userData.userFirstname})
+                        const token = jwt.sign({...userData}, process.env.SECRET_KEY,{expiresIn:60*60*24})
+                        res.json({
+                            success: true, 
+                            from: from, 
+                            response: {token, userData}, 
+                            message: "Welcome back "+userData.userFirstname
+                        })
                     }
                     else{
                         res.json({success: false, from: from, message: "You have not registered from "+from+", you can sign up from "+from})
@@ -130,12 +138,19 @@ const userController = {
                         let passwordMatches = userExists.userPassword.filter(pass => bcryptjs.compareSync(userPassword, pass))
                         if(passwordMatches.length > 0){
                         const userData ={
+                            userId: userExists._id,
                             userFirstname: userExists.userFirstname,
                             userEmail: userExists.userEmail,
                             userPhotoURL: userExists.userPhotoURL,
                             from: userExists.from,
                         }
-                        res.json({success: true, from: from, response: {userData}, message: "Welcome back "+userData.userFirstname})
+                        const token = jwt.sign({...userData},process.env.SECRET_KEY,{expiresIn:60*60*24})
+                        res.json({
+                            success: true, 
+                            from: from, 
+                            response: {token, userData}, 
+                            message: "Welcome back "+userData.userFirstname
+                        })
                         }else{
                             res.json({success: false, from: from, message: "Email or password are incorrect"})
                         }
