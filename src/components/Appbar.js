@@ -25,10 +25,10 @@ function MenuAppBar(props) {
     setAnchorEl(null);
   };
 
-  function handleOnClick() {
-		props.userLogOut(props.user.userEmail)
-    // handleClose()
-	}
+  function handleCloseLogOut(){
+    props.userLogOut(props.user.userEmail)
+    handleClose()
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -57,6 +57,8 @@ function MenuAppBar(props) {
             </div>
           </div>
           <Typography className="HeaderTitle" variant="h6" component="div" sx={{ flexGrow: 1 }}>MyTinerary</Typography>
+
+           {/* inicio ternario  */}
           {props.user ?
           <>
             {(
@@ -88,10 +90,14 @@ function MenuAppBar(props) {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
+                  <div className='dflex-column'>
                   <LinkRouter to="/userprofile">
-                    <MenuItem onClick={handleClose}>My profile</MenuItem>
+                    <MenuItem clasName="userMenuAnchor" onClick={handleClose}>My profile</MenuItem>
                   </LinkRouter>
-                  <MenuItem onClick={handleOnClick}>Log out</MenuItem>
+                  <LinkRouter to="/">
+                    <MenuItem clasName="userMenuAnchor" onClick={handleCloseLogOut}>Log out</MenuItem>
+                  </LinkRouter>
+                  </div>
                 </Menu>
               </div>
             )}
@@ -125,12 +131,14 @@ function MenuAppBar(props) {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
+                <div className='dflex-column'>
                   <LinkRouter to="/signup">
-                    <MenuItem onClick={handleClose}>Sign up</MenuItem>
+                    <MenuItem clasName="userMenuAnchor" onClick={handleClose}>Sign up</MenuItem>
                   </LinkRouter>
                   <LinkRouter to="/login">
-                    <MenuItem onClick={handleClose}>Log in</MenuItem>
+                    <MenuItem clasName="userMenuAnchor" onClick={handleClose}>Log in</MenuItem>
                   </LinkRouter>
+                </div>
                 </Menu>
               </div>
             )}
@@ -145,6 +153,8 @@ function MenuAppBar(props) {
 const mapStateToProps = (state) => {
 	return {
 		user: state.userReducer.user,
+    snackbar: state.userReducer.snackbar,
+
 	}
 }
 const mapDispatchToProps = {

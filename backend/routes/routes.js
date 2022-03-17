@@ -1,4 +1,5 @@
 const Router = require('express').Router();
+const validator = require('../config/validator')
 
 const locationsController = require('../controllers/locationsControllers')
 const itinerariesController = require('../controllers/itinerariesControllers');
@@ -30,12 +31,15 @@ Router.route('/allitineraries/:id')
 .put(modifyOneItinerary)
 
 Router.route('/auth/registration')
-.post(userRegistration)
+.post(validator, userRegistration)
 
 Router.route('/auth/login')
 .post(userLogIn)
 
 Router.route('/auth/logout')
 .post(userLogOut)
+
+Router.route('/verify/:uniqueString')
+.get(userEmailVerification)
 
 module.exports = Router

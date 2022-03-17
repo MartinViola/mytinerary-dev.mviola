@@ -18,6 +18,7 @@ function GoogleLogIn(props) {
     return (
         <GoogleLogin
         className="buttonsocial"
+        // clientId="971845975096-a3gu832l2esbdv2dmp2iktvql4t5imot.apps.googleusercontent.com"      CLIENT ID DE ADRIAN
         clientId="27522855911-1j5djabb8lmhhhvb3nc0uf77m30hfncl.apps.googleusercontent.com"
         buttonText="Google"
         onSuccess={responseGoogle}

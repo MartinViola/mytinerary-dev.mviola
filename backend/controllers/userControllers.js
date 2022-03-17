@@ -1,7 +1,54 @@
 const User = require('../models/user')
 const bcryptjs = require('bcryptjs')
+const crypto = require('crypto')
+const nodemailer = require('nodemailer')
+
+const sendEmail = async (email, uniqueString) => {
+
+    const transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+            user: "dev.mviola@gmail.com",
+            pass: "1621dev.mviola"
+        }
+    })
+
+    let sender = "dev.mviola@gmail.com"
+    let mailOptions ={
+        from: sender,
+        to: email,
+        subject: "MyTinerary: User registration validation",
+        html: `Press <a href="http://localhost:4000/api/verify/${uniqueString}">here</a> to validate the user registration`
+    };
+    await transporter.sendMail(mailOptions, function(error,response){
+        if(error){
+            console.log(error)
+        }else{
+            console.log("Confirmation email sent!")
+        }
+    })
+};
 
 const userController = {
+
+    userEmailVerification: async(req, res) => {
+
+        const {uniqueString} = req.params;
+
+        const user = await User.findOne({userUniqueString: uniqueString})
+        console.log(user)
+        if(user){
+            user.userEmailVerified = true
+            await user.save()
+            res.redirect("http://localhost:3000/")
+        }else{
+            res.json({success: false, response: "Your email has not been verified"})
+        }
+
+    },
+
     userRegistration: async (req,res) => {
         let {userFirstname, userLastname, userEmail, userPassword, userPhotoURL, userCountry, from} = req.body.newUserData
 
@@ -16,7 +63,9 @@ const userController = {
                     userExists.userPassword.push(hashedPassword)
                     if(from === "registrationForm"){
                         //luego agregaremos verificacion via email
+                        userExists.userUniqueString = crypto.randomBytes(15).toString('hex')
                         await userExists.save()
+                        await sendEmail(userEmail, userExists.uniqueString)
                         res.json({success: true, from:"registrationForm", message: "To confirm your registration we have sent an email to you."})
                     }else{
                         userExists.save()
@@ -30,9 +79,10 @@ const userController = {
                     userLastname, 
                     userEmail, 
                     userPassword:[hashedPassword], 
+                    userUniqueString: crypto.randomBytes(15).toString('hex'),
                     userPhotoURL, 
                     userCountry, 
-                    userEmailVerified:true,
+                    userEmailVerified:false,
                     from:[from],
                 })
                 if(from !== "registrationForm"){
@@ -41,6 +91,7 @@ const userController = {
                 }
                 else{
                     await newUser.save()
+                    await sendEmail(userEmail, newUser.userUniqueString)
                     res.json({success: true, from:"registrationForm", message: "We have sent an email to confirm the registration, please check your mailbox."})
                 }
             }
@@ -101,10 +152,10 @@ const userController = {
         }
     },
     userLogOut: async (req, res)=>{
-        const email = req.body.closerUser
+        const email = req.body.closeUser
         const user = await User.findOne({email})
         await user.save()
-        res.json(console.log(email + 'logged out'))
+        res.json(console.log(email + ' logged out'))
     },
 }
 

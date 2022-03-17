@@ -11,6 +11,7 @@ import SignUp from './sites/SignUp'
 import LogIn from './sites/LogIn'
 import UserProfile from './sites/UserProfile'
 // import Container from './sites/container'
+import Snack from './components/snackbar'
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/login" element={<LogIn />}/>
         <Route path="/userprofile" element={<UserProfile />}/>
       </Routes>
+      <Snack />
       <Footer />
     </BrowserRouter>
     </>

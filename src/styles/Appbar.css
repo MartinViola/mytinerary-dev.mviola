@@ -51,3 +51,22 @@ header {
     margin: 0 !important;
     padding: 0 !important;
   }
+  .userMenuAnchor *{
+    color: black !important;
+  }
+  .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+    color: black !important;
+  }
+  a:-webkit-any-link {
+        text-decoration: none !important;
+  }
+  .dflex-column{
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+  }
+  .dflex-column>a{
+    width: 80px;
+    margin: 10px 10px 0px 10px !important;
+  }
