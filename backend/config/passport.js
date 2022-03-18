@@ -8,9 +8,8 @@ module.exports = passport.use(new jwtStrategy({
     jwtFromRequest: extractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: process.env.SECRET_KEY
 },(jwt_payload,done)=>{
-    User.findOne({_id:jwt_payload.userId})
+    User.findOne({_id:jwt_payload._id})
     .then(user => {
-        console.log('desde passport')
         console.log(jwt_payload)
         if (user) {
             return done(null, user)
@@ -27,5 +26,4 @@ module.exports = passport.use(new jwtStrategy({
         console.log(err)
         return done(err,false)
     })
-
 }))

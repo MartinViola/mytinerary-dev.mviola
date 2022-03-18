@@ -19,7 +19,7 @@ function App(props) {
 
   useEffect(()=>{
     if(localStorage.getItem('token')!==null){
-      const token = localStorage.getItem("token")
+      const token = localStorage.getItem('token')
       props.verifyToken(token)
     }
   },[])
@@ -46,8 +46,13 @@ function App(props) {
   );
 }
 
+const mapStateToProps = (state) => {
+  return {
+      user: state.userReducer.user,
+  }
+}
 const mapDispatchToProps = {
   verifyToken: userActions.verifyToken,
 }
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

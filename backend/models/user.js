@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     userPhotoURL: {type: String, required:true},
     userCountry: {type: String, required:true},
     userEmailVerified: {type: Boolean, required:true},
-    userId: {type: String},
+    // _id: {type: String},
     from: {type: Array},
 })
 

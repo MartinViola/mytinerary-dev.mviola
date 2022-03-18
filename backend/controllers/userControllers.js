@@ -116,7 +116,7 @@ const userController = {
                     let passwordMatches = userExists.userPassword.filter(pass => bcryptjs.compareSync(userPassword, pass))
                     if (passwordMatches.length > 0){
                         const userData = {
-                            userId: userExists._id,
+                            _id: userExists._id,
                             userFirstname: userExists.userFirstname,
                             userEmail: userExists.userEmail,
                             userPhotoURL: userExists.userPhotoURL,
@@ -140,7 +140,7 @@ const userController = {
                         let passwordMatches = userExists.userPassword.filter(pass => bcryptjs.compareSync(userPassword, pass))
                         if(passwordMatches.length > 0){
                         const userData ={
-                            userId: userExists._id,
+                            _id: userExists._id,
                             userFirstname: userExists.userFirstname,
                             userEmail: userExists.userEmail,
                             userPhotoURL: userExists.userPhotoURL,
@@ -174,15 +174,12 @@ const userController = {
         await user.save()
         res.json(console.log(email + ' logged out'))
     },
-    verifyToken: async (req, res)=>{
-        console.log('desde userController')
-        console.log(req.user)
+    verifyToken: (req, res)=>{
         if(!req.err){
-            console.log("if user controller")
-            console.log(req.user._id)
+            console.log(req.user)
             res.json({
                 success: true,
-                response: {id:req.user._id, userFirstname: req.user.userFirstname, userEmail: req.user.userEmail, from: "token"},
+                response: {_id:req.user._id, userFirstname: req.user.userFirstname, userEmail: req.user.userEmail, userPhotoURL: req.user.userPhotoURL, from: "token"},
                 message: "Welcome back"+req.user.userFirstname
             })
         }else{
