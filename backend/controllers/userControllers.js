@@ -51,7 +51,9 @@ const userController = {
     },
 
     userRegistration: async (req,res) => {
-        let {userFirstname, userLastname, userEmail, userPassword, userPhotoURL, userCountry, from} = req.body.newUserData
+        let {userFirstname, userLastname, userEmail, userPassword, userPhotoURL, userCountry, userEmailVerified, from} = req.body.newUserData
+
+        console.log(req.body.newUserData)
 
         try{
             const userExists = await User.findOne({userEmail})
@@ -171,6 +173,24 @@ const userController = {
         const user = await User.findOne({email})
         await user.save()
         res.json(console.log(email + ' logged out'))
+    },
+    verifyToken: async (req, res)=>{
+        console.log('desde userController')
+        console.log(req.user)
+        if(!req.err){
+            console.log("if user controller")
+            console.log(req.user._id)
+            res.json({
+                success: true,
+                response: {id:req.user._id, userFirstname: req.user.userFirstname, userEmail: req.user.userEmail, from: "token"},
+                message: "Welcome back"+req.user.userFirstname
+            })
+        }else{
+            res.json({
+                success: false,
+                message: "Please log in again."
+            })
+        }
     },
 }
 

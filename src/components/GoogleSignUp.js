@@ -12,6 +12,7 @@ function GoogleSignUp(props) {
             userLastname: res.profileObj.familyName,
             userEmail: res.profileObj.email,
             userPassword: res.profileObj.googleId,
+            userUniqueString: 'TBD',
             userPhotoURL: res.profileObj.imageUrl,
             userCountry: "TBD",
             userEmailVerified: true,

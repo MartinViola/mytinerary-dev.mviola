@@ -26,6 +26,7 @@ function SignUp(props) {
             userLastname: event.target[1].value,
             userEmail: event.target[2].value,
             userPassword: event.target[3].value,
+            userEmailVerified: false,
             userPhotoURL: event.target[4].value,
             userCountry: event.target[5].value,
             from: "registrationForm"

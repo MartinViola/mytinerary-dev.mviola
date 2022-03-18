@@ -58,6 +58,30 @@ const userActions = {
             })
         }
     },
+    verifyToken: (token) => {
+        return async (dispatch, getState) => {
+            const user = await axios.get('http://localhost:4000/api/auth/logInToken', {
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            })
+            if (user.data.success) {
+                dispatch({ type: 'user', payload: user.data.response });
+                dispatch({
+                    type: 'message',
+                    payload: {
+                        snackbar:{
+                            view: true,
+                            message: user.data.message,
+                            success: user.data.success
+                        }
+                    }
+                });
+            }else {
+                localStorage.removeItem('token')
+            }
+        }
+    }
 }
 
 export default userActions;

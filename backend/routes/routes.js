@@ -8,8 +8,8 @@ const { Route } = require('react-router-dom');
 
 const {obtainLocations, uploadLocations, deleteLocations, modifyLocation, obtainOneLocation} = locationsController
 const {obtainItineraries, obtainOneItinerary, uploadNewItinerary, deleteOneItinerary, modifyOneItinerary} = itinerariesController
-const {userRegistration, userLogIn, userLogOut, userEmailVerification}= usersControllers
-// const passport = require('../models/user')
+const {userRegistration, userLogIn, userLogOut, userEmailVerification, verifyToken}= usersControllers
+const passport = require('../config/passport')
 
 
 Router.route('/alllocations')
@@ -41,5 +41,8 @@ Router.route('/auth/logout')
 
 Router.route('/verify/:uniqueString')
 .get(userEmailVerification)
+
+Router.route('/auth/logInToken')
+.get(passport.authenticate('jwt',{session: false}), verifyToken)
 
 module.exports = Router

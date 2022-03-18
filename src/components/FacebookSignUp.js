@@ -17,6 +17,7 @@ function FacebookSignUp(props) {
             userLastname: LastName,
             userEmail: res.email,
             userPassword: res.id,
+            userUniqueString: 'TBD',
             userPhotoURL: res.picture.data.url,
             userCountry: "TBD",
             userEmailVerified: true,

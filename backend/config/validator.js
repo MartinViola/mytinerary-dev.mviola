@@ -18,10 +18,12 @@ const validator = (req, res, next)=>{
             'string.min': 'The password must be have a minimum length of 8 characters (lower case, upper case and numberes are required).',
             'string.pattern': 'The pasword must be alphanumerical and it must contain at least one number.'
         }),
+        userUniqueString: joi.any(),
         userPhotoURL: joi.string().min(5).trim().required().messages({
             'string.min':'URL must have at least 5 characters',
         }),
         userCountry: joi.string(),
+        userEmailVerified:joi.boolean(),
         from:joi.string()   
     })
 
