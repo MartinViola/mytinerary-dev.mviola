@@ -31,7 +31,7 @@ function Carrousel(props) {
           clickable: true,
         }}
         breakpoints={{
-          360: {
+          300: {
             slidesPerView: 1,
             spaceBetween: 30,
             slidesPerGroup: 1,
