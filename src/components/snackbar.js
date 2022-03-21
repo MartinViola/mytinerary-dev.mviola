@@ -1,9 +1,16 @@
+// import * as React from 'react';
+// import Button from '@mui/material/Button';
+// import Snackbar from '@mui/material/Snackbar';
+// import IconButton from '@mui/material/IconButton';
+// import CloseIcon from '@mui/icons-material/Close';
+
 import React from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core/styles';
 import { styled } from '@material-ui/core/styles';
+
 import { connect } from 'react-redux';
 import userActions from '../redux/actions/userActions';
 import {useDispatch} from 'react-redux';
@@ -18,6 +25,7 @@ function Snack(props) {
     }
   }));
 
+  
   const MySnackbar = styled(Snackbar)({
     backgroundColor: props.snackbar.success ? 'green' : 'red',
     color: '#fff',
@@ -27,23 +35,23 @@ function Snack(props) {
     lineHeight: '1.43',
     letterSpacing: '0.01071em',
   });
-
+  
   const classes = useStyles();
-
+  
   const handleClose = () => {
     dispatch({
       type: 'message',
       payload: {
         user: null, 
         snackbar: {
-            view: false, 
-            message: '',
-            success: false}
+          view: false, 
+          message: '',
+          success: false}
         }
-    });
-  };
-
-  return (
+      });
+    };
+    
+    return (
     <div>
       {props.snackbar.view === true && (
         <MySnackbar

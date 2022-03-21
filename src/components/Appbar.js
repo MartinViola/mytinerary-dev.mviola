@@ -92,10 +92,10 @@ function MenuAppBar(props) {
                 >
                   <div className='dflex-column'>
                   <LinkRouter to="/userprofile">
-                    <MenuItem clasName="userMenuAnchor" onClick={handleClose}>My profile</MenuItem>
+                    <MenuItem className="userMenuAnchor" onClick={handleClose}>My profile</MenuItem>
                   </LinkRouter>
                   <LinkRouter to="/">
-                    <MenuItem clasName="userMenuAnchor" onClick={handleCloseLogOut}>Log out</MenuItem>
+                    <MenuItem className="userMenuAnchor" onClick={handleCloseLogOut}>Log out</MenuItem>
                   </LinkRouter>
                   </div>
                 </Menu>
@@ -133,10 +133,10 @@ function MenuAppBar(props) {
                 >
                 <div className='dflex-column'>
                   <LinkRouter to="/signup">
-                    <MenuItem clasName="userMenuAnchor" onClick={handleClose}>Sign up</MenuItem>
+                    <MenuItem className="userMenuAnchor" onClick={handleClose}>Sign up</MenuItem>
                   </LinkRouter>
                   <LinkRouter to="/login">
-                    <MenuItem clasName="userMenuAnchor" onClick={handleClose}>Log in</MenuItem>
+                    <MenuItem className="userMenuAnchor" onClick={handleClose}>Log in</MenuItem>
                   </LinkRouter>
                 </div>
                 </Menu>

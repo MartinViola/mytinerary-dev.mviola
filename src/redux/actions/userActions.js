@@ -5,13 +5,11 @@ const userActions = {
         return async (dispatch, getState)=>{
             const res = await axios.post('http://localhost:4000/api/auth/registration',{newUserData})
             dispatch({type: 'message', 
-            payload: {
-                user: null, 
-                snackbar: {
+                payload: {
                     view: true, 
                     message: res.data.message,
                     success: res.data.success}
-                }}
+                }
             ) 
         }
     },
@@ -21,25 +19,19 @@ const userActions = {
             if(user.data.success){
                 localStorage.setItem('token', user.data.response.token)
                 dispatch({type: 'user', 
-                payload: {
-                    user: user.data.response.userData,
-                    snackbar: {
-                        view: true, 
-                        message: user.data.message,
-                        success: user.data.success}
-                    }}
-                )
-            }else{
-                dispatch({type: 'user', 
-                payload: {
-                    user: null,
-                    snackbar: {
-                        view: true, 
-                        message: user.data.message,
-                        success: user.data.success}
-                    }}
+                    payload: user.data.response.userData,
+                    }
                 )
             }
+            
+                dispatch({type: 'message', 
+                    payload: {
+                        view: true, 
+                        message: user.data.message,
+                        success: user.data.success}
+                    }
+                )
+            
         }
     },
     userLogOut: (closeUser)=>{
@@ -47,14 +39,7 @@ const userActions = {
             const user = axios.post('http://localhost:4000/api/auth/logout',{closeUser})
             localStorage.removeItem('token')
             dispatch({type: 'user', 
-            payload: {
-                user: null,
-                snackbar: {
-                    view: false,
-                    message: '',
-                    success: false
-                  }
-                }
+            payload: null
             })
         }
     },
@@ -70,12 +55,10 @@ const userActions = {
                 dispatch({
                     type: 'message',
                     payload: {
-                        snackbar:{
                             view: true,
                             message: user.data.message,
                             success: user.data.success
                         }
-                    }
                 });
             }else {
                 localStorage.removeItem('token')

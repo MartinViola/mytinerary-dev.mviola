@@ -44,7 +44,6 @@ const locationsController = {
         const id = req.params.id
         const location = req.body.dataInput
         let ciudadB = await Locations.findOneAndUpdate({_id:id}, location)
-        console.log(ciudadB)
         // Locations.findOneAndUpdate({_id:id},location,{new:true})
     },
     obtainOneLocation: async (req, res) =>{

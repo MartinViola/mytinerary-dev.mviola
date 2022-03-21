@@ -46,7 +46,8 @@ function City(props) {
                       <h3>{Itinerary.itinerary}</h3>
                       <div className="containerItineraryDurationPriceLikes">
                         <p>Duration: {Itinerary.duration} </p>
-                        <p>Price: {Itinerary.price} </p>
+                        <p>Price: {'💵'.repeat(Itinerary.price)} </p>
+                        {/* <p>Price: {Itinerary.price} </p> */}
                         <p>Likes: {Itinerary.likes} </p>
                       </div>
                     </div>
