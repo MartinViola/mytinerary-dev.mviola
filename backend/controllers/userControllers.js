@@ -39,7 +39,6 @@ const userController = {
         const {uniqueString} = req.params;
 
         const user = await User.findOne({userUniqueString: uniqueString})
-        console.log(user)
         if(user){
             user.userEmailVerified = true
             await user.save()
@@ -52,8 +51,6 @@ const userController = {
 
     userRegistration: async (req,res) => {
         let {userFirstname, userLastname, userEmail, userPassword, userPhotoURL, userCountry, userEmailVerified, from} = req.body.newUserData
-
-        console.log(req.body.newUserData)
 
         try{
             const userExists = await User.findOne({userEmail})
@@ -176,11 +173,10 @@ const userController = {
     },
     verifyToken: (req, res)=>{
         if(!req.err){
-            console.log(req.user)
             res.json({
                 success: true,
                 response: {_id:req.user._id, userFirstname: req.user.userFirstname, userEmail: req.user.userEmail, userPhotoURL: req.user.userPhotoURL, from: "token"},
-                message: "Welcome back"+req.user.userFirstname
+                message: "Welcome back "+req.user.userFirstname
             })
         }else{
             res.json({

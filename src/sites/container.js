@@ -12,10 +12,6 @@ function Container(props) {
         console.log(props)
 	}
 
-    // useEffect(()=>{
-    //     console.log(props)
-    // },[props])
-
 	return (
 		<>
 			{props.user ? <><h1>Usuario conectado {props.user.userFirstname} desde {props.user.from[0]}</h1>

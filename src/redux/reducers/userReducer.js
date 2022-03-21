@@ -12,13 +12,13 @@ const userReducer = (state = initialState, action) => {
         case 'user':
             return{
                 ...state,
-                user: action.payload.user,
-                snackbar: action.payload.snackbar,
+                user: action.payload,
+                // snackbar: action.payload.snackbar,
             }
         case 'message':
             return {
                 ...state,
-                snackbar: action.payload.snackbar, 
+                snackbar: action.payload, 
             }
         default:
             return state

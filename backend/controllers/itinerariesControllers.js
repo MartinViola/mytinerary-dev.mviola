@@ -70,7 +70,6 @@ const itinerariesController = {
         const id = req.params.id
         const itinerary = req.body.dataInput
         let itineraryB = await Itineraries.findOneAndUpdate({_id:id}, itinerary)
-        console.log(itineraryB)
         // Locations.findOneAndUpdate({_id:id},location,{new:true})
     }
 
