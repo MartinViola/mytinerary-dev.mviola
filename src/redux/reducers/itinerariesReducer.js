@@ -18,6 +18,8 @@ const itinerariesReducer = (state = initialState, action) => {
                     cityItineraries: action.payload,
                     auxItineraries: action.payload,
                 }
+            case 'LikeDislike':
+
         default:
             return state
     }

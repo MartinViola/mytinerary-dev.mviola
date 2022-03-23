@@ -4,11 +4,13 @@ const validator = require('../config/validator')
 const locationsController = require('../controllers/locationsControllers')
 const itinerariesController = require('../controllers/itinerariesControllers');
 const usersControllers = require('../controllers/userControllers');
+const activitiesController = require('../controllers/activitiesController')
 const { Route } = require('react-router-dom');
 
 const {obtainLocations, uploadLocations, deleteLocations, modifyLocation, obtainOneLocation} = locationsController
-const {obtainItineraries, obtainOneItinerary, uploadNewItinerary, deleteOneItinerary, modifyOneItinerary} = itinerariesController
+const {obtainItineraries, obtainOneItinerary, uploadNewItinerary, deleteOneItinerary, modifyOneItinerary, LikeDislikeItinerary} = itinerariesController
 const {userRegistration, userLogIn, userLogOut, userEmailVerification, verifyToken}= usersControllers
+const { obtainAllActivitiesForOneItinerary } = activitiesController
 const passport = require('../config/passport')
 
 
@@ -29,6 +31,12 @@ Router.route('/allitineraries/:id')
 .get(obtainOneItinerary)
 .delete(deleteOneItinerary)
 .put(modifyOneItinerary)
+
+Router.route('/allActivitiesForOneItinerary/:itineraryId')
+.get(obtainAllActivitiesForOneItinerary)
+
+Router.route('/LikeDislike/:id')
+.put(passport.authenticate('jwt',{session: false}), LikeDislikeItinerary)
 
 Router.route('/auth/registration')
 .post(validator, userRegistration)
