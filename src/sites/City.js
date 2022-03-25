@@ -14,11 +14,15 @@ import citiesActions from '../redux/actions/citiesActions';
 import itinerariesActions from '../redux/actions/itinerariesActions';
 import userActions from '../redux/actions/userActions';
 import ActivityCard from '../components/activityCard';
+import commentsActions from '../redux/actions/commentsActions';
+import { SettingsApplicationsRounded } from '@mui/icons-material';
 
 function City(props) {
 
   let {_id} = useParams();
   const [reload, setReload] = useState(false)
+  const [modifyCommentState, setModifyComment] = useState()
+  const [inputText, setInputText] = useState()
 
   useEffect(()=>{
     window.scrollTo(0, 0)
@@ -29,11 +33,35 @@ function City(props) {
 
   const LikeFunction = (event) => {
     let itineraryID= event.target.value
-    console.log(itineraryID)
     let userID = props.user._id
     props.LikeDislike(itineraryID, userID)
     setReload(!reload)
   };
+
+  async function uploadComment(event){
+    //PASO EL ID DEL ITINERARIO
+    const commentData = {
+      itinerary: event.target.id,
+      comment: inputText
+    }
+    await props.addComment(commentData)
+    .then(response => setInputText(""))
+    setReload(!reload)
+  };
+
+  async function modifyComment(event){
+    const commentData={
+      commentId: event.target.id,
+      comment: modifyCommentState
+    }
+    await props.modifyComment(commentData)
+    setReload(!reload)
+  };
+
+  async function deleteComment(event){
+    await props.deleteComment(event.target.id)
+    setReload(!reload)
+  }
 
   return (
     <div className="containerOneCityDetailsSite">
@@ -65,13 +93,59 @@ function City(props) {
                   </AccordionSummary>
                   <AccordionDetails>
                     <ActivityCard itineraryId={Itinerary._id} />
-                    {/* {Itinerary.hashtags.map(element=>
-                    <p>{element}</p>
-                    )} */}
+                    <div className='hashtagsContainer'>
+                      {Itinerary.hastags.map(element=>
+                      <p>{element}</p>
+                      )}
+                    </div>
                     <div className="authorContainer">
                       <img className="imgAuthor" src={process.env.PUBLIC_URL+`/img/${Itinerary.creatorImage}`} alt="author" />
                       <p>Insider: {Itinerary.creator}</p>
                     </div>
+                    {Itinerary?.comments.map(comment=>
+                      <>
+                      {comment.userId?._id !== props.user?.id ?
+                        <div className="oldCommentContainer">
+                          <h4>
+                            Aca deberia ir el nombre del usuario (distinto al logeado) y debajo muestra su comentario
+                            {/* {comment.userId?.userFirstname} */}
+                          </h4>
+                          <div>
+                            {comment.comment}
+                          </div>
+                        </div>
+                        :
+                        <div className="oldCommentContainer">
+                          <h4>
+                          Aca deberia ir el nombre del usuario (logeado) y debajo muestra su comentario (con posibilidad de elimar y modificar el comentario)
+                            {/* {comment.userId.userFirstname} */}
+                          </h4>
+                          <div>
+                            <textarea type="text" onChange={(event)=>setModifyComment(event.target.value)} defaultValue={comment.comment}></textarea>
+                            <div>
+                              <button id={comment._id} onClick={modifyComment}>Modify comment</button>
+                              <button id={comment._id} onClick={deleteComment}>Delete comment</button>
+                            </div>
+                          </div>
+                        </div>
+                      } 
+                      </>
+                    )}
+                    {props.user ?
+                      <div className="newCommentContainer">
+                          <h4>
+                            Leave us your comment:
+                          </h4>
+                          <div>
+                            <textarea type="text" onChange={(event)=>setInputText(event.target.value)}></textarea>
+                            <button id={Itinerary._id} onClick={uploadComment}>Upload comment</button>
+                          </div>
+                      </div>
+                      :
+                      <div className="newCommentContainer">
+                        <h4>Sign in and leave us your comment.</h4>
+                      </div>
+                    }
                   </AccordionDetails>
                 </Accordion>
               </div>
@@ -94,6 +168,9 @@ const mapDispatchToProps = {
   fetchOneLocation: citiesActions.fetchOneLocation,
   fetchOneItinerary: itinerariesActions.fetchOneItinerary,
   LikeDislike: itinerariesActions.LikeDislike,
+  addComment: commentsActions.addComment,
+  modifyComment: commentsActions.modifyComment,
+  deleteComment: commentsActions.deleteComment,
 }
 const mapStateToProps = (state) => {
   return {

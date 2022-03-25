@@ -10,7 +10,10 @@ const itinerariesSchema = new mongoose.Schema({
     creatorImage: {type: String, required:true},
     likes: {type: Array},
     hastags: {type: Array, required:true},
-    comments:{type: String},
+    comments:[{
+        comment: {type: String},
+        userId: {type: mongoose.Types.ObjectId, ref:"users"},
+    }],
     activities_id: {type: Array},
 })
 
