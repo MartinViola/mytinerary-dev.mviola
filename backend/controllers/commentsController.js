@@ -32,7 +32,7 @@ const commentsController = {
         const id = req.params.id
         const user = req.user._id
         try{
-            const deleteComment = await Itineraries.findOneAndUpdate({"comment._id":id}, {$pull: {comments: {_id:id}}}, {new:true})
+            const deleteComment = await Itineraries.findOneAndUpdate({"comments._id":id}, {$pull: {comments: {_id:id}}}, {new:true})
             res.json({success: true, response: {deleteComment}, message: "Your comment has been deleted."})
         }
         catch(error){

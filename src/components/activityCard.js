@@ -15,7 +15,7 @@ function ActivityCard(props) {
     return(
         <>
             {activities.map(activityElement =>
-                <div className='activityCardContainer'>
+                <div key={activityElement.activityName} className='activityCardContainer'>
                     {/* <img className="activityImage" src={process.env.PUBLIC_URL+`/img/${activityElement.activityImage}`} alt="activity" /> */}
                     <img className="activityImage" src={activityElement.activityImage} alt="activity" />
                     <div className="activityTitleDescriptionContainer">

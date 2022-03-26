@@ -30,14 +30,14 @@ function City(props) {
     props.fetchOneItinerary(_id)
     props.fetchOneLocation(_id)
   },[reload]);
-
+  
   const LikeFunction = (event) => {
     let itineraryID= event.target.value
     let userID = props.user._id
     props.LikeDislike(itineraryID, userID)
     setReload(!reload)
   };
-
+  
   async function uploadComment(event){
     //PASO EL ID DEL ITINERARIO
     const commentData = {
@@ -48,7 +48,7 @@ function City(props) {
     .then(response => setInputText(""))
     setReload(!reload)
   };
-
+  
   async function modifyComment(event){
     const commentData={
       commentId: event.target.id,
@@ -57,7 +57,7 @@ function City(props) {
     await props.modifyComment(commentData)
     setReload(!reload)
   };
-
+  
   async function deleteComment(event){
     await props.deleteComment(event.target.id)
     setReload(!reload)
@@ -95,34 +95,28 @@ function City(props) {
                     <ActivityCard itineraryId={Itinerary._id} />
                     <div className='hashtagsContainer'>
                       {Itinerary.hastags.map(element=>
-                      <p>{element}</p>
+                      <p key={element}>{element}</p>
                       )}
                     </div>
                     <div className="authorContainer">
                       <img className="imgAuthor" src={process.env.PUBLIC_URL+`/img/${Itinerary.creatorImage}`} alt="author" />
                       <p>Insider: {Itinerary.creator}</p>
                     </div>
+                    <h4 className="titleComments">Comments:</h4>
                     {Itinerary?.comments.map(comment=>
                       <>
-                      {comment.userId?._id !== props.user?.id ?
+                      {comment?.userId !== props?.user?._id ?
+                      // {comment.userId?._id !== props.user?.id ?
                         <div className="oldCommentContainer">
-                          <h4>
-                            Aca deberia ir el nombre del usuario (distinto al logeado) y debajo muestra su comentario
-                            {/* {comment.userId?.userFirstname} */}
-                          </h4>
-                          <div>
-                            {comment.comment}
-                          </div>
+                          <h5>Other user {comment.userId.userFirstname}</h5>
+                          <p>{comment.comment}</p>
                         </div>
                         :
                         <div className="oldCommentContainer">
-                          <h4>
-                          Aca deberia ir el nombre del usuario (logeado) y debajo muestra su comentario (con posibilidad de elimar y modificar el comentario)
-                            {/* {comment.userId.userFirstname} */}
-                          </h4>
+                          <h5>Current user {comment.userId.userFirstname}</h5>
                           <div>
                             <textarea type="text" onChange={(event)=>setModifyComment(event.target.value)} defaultValue={comment.comment}></textarea>
-                            <div>
+                            <div className="oldCommentButtonsContainer">
                               <button id={comment._id} onClick={modifyComment}>Modify comment</button>
                               <button id={comment._id} onClick={deleteComment}>Delete comment</button>
                             </div>
@@ -131,11 +125,11 @@ function City(props) {
                       } 
                       </>
                     )}
-                    {props.user ?
+                    {props.user !== null ?
                       <div className="newCommentContainer">
-                          <h4>
+                          <h5>
                             Leave us your comment:
-                          </h4>
+                          </h5>
                           <div>
                             <textarea type="text" onChange={(event)=>setInputText(event.target.value)}></textarea>
                             <button id={Itinerary._id} onClick={uploadComment}>Upload comment</button>
@@ -143,7 +137,7 @@ function City(props) {
                       </div>
                       :
                       <div className="newCommentContainer">
-                        <h4>Sign in and leave us your comment.</h4>
+                        <h5>Sign in and leave us your comment.</h5>
                       </div>
                     }
                   </AccordionDetails>

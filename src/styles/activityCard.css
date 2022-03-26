@@ -16,3 +16,16 @@
 .activityTitleDescriptionContainer>h4{
     margin-bottom: 1rem;
 }
+@media screen and (max-width:800px) {
+    .activityCardContainer{
+        flex-direction: column;
+    }
+    .activityImage{
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+    }
+    .activityTitleDescriptionContainer{
+        margin-left: 0;
+    }
+}
