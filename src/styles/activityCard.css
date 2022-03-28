@@ -1,0 +1,31 @@
+.activityImage{
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+}
+.activityCardContainer{
+    width: 100%;
+    display: flex;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid black;
+    margin-bottom: 1rem;
+}
+.activityTitleDescriptionContainer{
+    margin-left: 1rem;
+}
+.activityTitleDescriptionContainer>h4{
+    margin-bottom: 1rem;
+}
+@media screen and (max-width:800px) {
+    .activityCardContainer{
+        flex-direction: column;
+    }
+    .activityImage{
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+    }
+    .activityTitleDescriptionContainer{
+        margin-left: 0;
+    }
+}

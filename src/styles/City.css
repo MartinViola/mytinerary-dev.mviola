@@ -60,14 +60,14 @@
 .containerItineraryInfo{
     width: 100%;
     display: flex;
-    flex-direction: column;
-    /* justify-content: flex-start !important; */
-    /* align-content: flex-start; */
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 }
 .containerItineraryDurationPriceLikes{
-    width: 40%;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 .containerOneCityDetailsSite{
     min-height: calc(100vh - 64px);
@@ -84,13 +84,55 @@
     flex-direction: column;
     /* flex-wrap: wrap; */
 }
+.authorContainer>p{
+    padding-bottom: 1rem;
+    /* margin-bottom: 1rem; */
+    border-bottom: 3px solid orange;
+}
 .imgAuthor{
     height: 100px;
     width: 100px;
     object-fit: cover;
 }
+.newCommentContainer{
+    margin-top: 1rem;
+    /* border: 1px solid black; */
+}
+.titleComments{
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+.oldCommentContainer, .newCommentContainer{
+    padding: 5px;
+    border: 1px solid black;
+    margin-top: 10px;
+}
+.oldCommentContainer>div, .newCommentContainer>div{
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+}
+.oldCommentContainer>div>textarea, .newCommentContainer>div>textarea{
+    width: 100%;
+    /* margin: 10px 0 10px 0; */
+}
+.oldCommentButtonsContainer{
+    display: flex;
+}
+.hashtagsContainer{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.hashtagsContainer>p{
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
 .css-1elwnq4-MuiPaper-root-MuiAccordion-root {
     background-color: #777777 !important;
+}
+.containerItineraryInfo>p{
+    vertical-align: baseline;
 }
 @media screen and (max-width:800px) {
     .cityContainer{
@@ -105,19 +147,30 @@
     .cityDetails{
         margin-left: 0;
         margin-bottom: 20px;
-    }
-    .containerItineraries{
-        width: 345px;
-    }
-    .cityDetails{
         width: 345px;
         display: flex;
         flex-direction: column;
         margin-top: 1rem;
     }
-    .containerItineraryDurationPriceLikes{
-        width: 90%;
-        display: flex;
-        justify-content: space-between;
+    .containerItineraries{
+        width: 345px;
     }
+    .containerItineraryDurationPriceLikes{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+    }
+    .oldCommentContainer>div, .newCommentContainer>div{
+        flex-direction: column;
+    }
+}
+.likeBtn{
+    background-color: transparent;
+    border: 0;
+    height: 30px;
+    width: 30px;
+    font-size: larger;
+}
+.itinerariPriceP{
+    margin-left: 1rem;
 }

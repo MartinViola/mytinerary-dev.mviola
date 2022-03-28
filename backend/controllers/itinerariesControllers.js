@@ -1,5 +1,6 @@
 const { duration } = require('@mui/material')
 const Itineraries = require('../models/itineraries')
+var ObjectId = require('mongodb').ObjectID;
 
 const itinerariesController = {
     obtainItineraries: async (req, res) =>{
@@ -71,7 +72,29 @@ const itinerariesController = {
         const itinerary = req.body.dataInput
         let itineraryB = await Itineraries.findOneAndUpdate({_id:id}, itinerary)
         // Locations.findOneAndUpdate({_id:id},location,{new:true})
-    }
+    },
+    LikeDislikeItinerary: async (req, res)=>{
+        const itineraryID = req.params.id; //llega por parametro desde axios
+        const userID = req.body.userID; //llega por respuesta desde passport, en la ruta hay que llamar a passport, ver ruta
+        //como hago para pasar mas de una variable del action al controlador, RESPUESTA: mediante BODY en el axios!
+        // let test = await Itineraries.findOneAndUpdate({_id:ObjectId(itineraryID)}, {$push: { "likes": itineraryID }})
+        //el find one debe pushear userID y no itineraryID
 
+        try{
+            let itinerary = await Itineraries.findOne({_id:itineraryID})
+            if(itinerary.likes.includes(userID)){
+                Itineraries.findOneAndUpdate({_id:itineraryID}, {$pull: { "likes": userID }}, {new:true})
+                .then(response=>res.json({success:true, response: response.likes}))
+                .catch(error=>console.log(error))
+            }else{
+                Itineraries.findOneAndUpdate({_id:itineraryID}, {$push: { "likes": userID }}, {new:true})
+                .then(response=>res.json({success:true, response: response.likes}))
+                .catch(error=>console.log(error))
+            }
+        }catch(err){
+            error = err
+            res.json({success:false, response: error, message: "You need to be logged in!"})            
+        }
+    },
 }
 module.exports = itinerariesController

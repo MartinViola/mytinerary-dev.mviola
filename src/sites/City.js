@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -12,17 +12,56 @@ import {Link as LinkRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import citiesActions from '../redux/actions/citiesActions';
 import itinerariesActions from '../redux/actions/itinerariesActions';
+import userActions from '../redux/actions/userActions';
+import ActivityCard from '../components/activityCard';
+import commentsActions from '../redux/actions/commentsActions';
+import { SettingsApplicationsRounded } from '@mui/icons-material';
 
 function City(props) {
 
   let {_id} = useParams();
+  const [reload, setReload] = useState(false)
+  const [modifyCommentState, setModifyComment] = useState()
+  const [inputText, setInputText] = useState()
 
   useEffect(()=>{
     window.scrollTo(0, 0)
     // props.fetchItineraries()
     props.fetchOneItinerary(_id)
     props.fetchOneLocation(_id)
-  },[]);
+  },[reload]);
+  
+  const LikeFunction = (event) => {
+    let itineraryID= event.target.value
+    let userID = props.user._id
+    props.LikeDislike(itineraryID, userID)
+    setReload(!reload)
+  };
+  
+  async function uploadComment(event){
+    //PASO EL ID DEL ITINERARIO
+    const commentData = {
+      itinerary: event.target.id,
+      comment: inputText
+    }
+    await props.addComment(commentData)
+    .then(response => setInputText(""))
+    setReload(!reload)
+  };
+  
+  async function modifyComment(event){
+    const commentData={
+      commentId: event.target.id,
+      comment: modifyCommentState
+    }
+    await props.modifyComment(commentData)
+    setReload(!reload)
+  };
+  
+  async function deleteComment(event){
+    await props.deleteComment(event.target.id)
+    setReload(!reload)
+  }
 
   return (
     <div className="containerOneCityDetailsSite">
@@ -40,54 +79,73 @@ function City(props) {
             <h2 className="h1Itineraries">{props.oneCity.name} Itineraries:</h2>
             {props.cityItineraries.length > 0 ? props.cityItineraries.map(Itinerary =>
               <div className='divAccordion' >
-                <Accordion>
-                  <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
                     <div className="containerItineraryInfo">
                       <h3>{Itinerary.itinerary}</h3>
+                      <button onClick={LikeFunction} value={Itinerary._id} className="likeBtn">👍</button>
+                      <p>{Itinerary.likes.length} </p>
+                    </div>
+                <Accordion>
+                  <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
                       <div className="containerItineraryDurationPriceLikes">
                         <p>Duration: {Itinerary.duration} </p>
-                        <p>Price: {'💵'.repeat(Itinerary.price)} </p>
-                        {/* <p>Price: {Itinerary.price} </p> */}
-                        <p>Likes: {Itinerary.likes} </p>
+                        <p className='itinerariPriceP'>Price: {'$'.repeat(Itinerary.price)} </p>
                       </div>
-                    </div>
-                    {/* <Typography>Accordion 1</Typography> */}
                   </AccordionSummary>
                   <AccordionDetails>
-                    <Typography>
-                      Under construction!
-                    </Typography>
-                    <p>{Itinerary.hashtags}</p>
+                    <ActivityCard itineraryId={Itinerary._id} />
+                    <div className='hashtagsContainer'>
+                      {Itinerary.hastags.map(element=>
+                      <p key={element}>{element}</p>
+                      )}
+                    </div>
                     <div className="authorContainer">
                       <img className="imgAuthor" src={process.env.PUBLIC_URL+`/img/${Itinerary.creatorImage}`} alt="author" />
                       <p>Insider: {Itinerary.creator}</p>
                     </div>
+                    <h4 className="titleComments">Comments:</h4>
+                    {Itinerary?.comments.map(comment=>
+                      <>
+                      {comment?.userId !== props?.user?._id ?
+                      // {comment.userId?._id !== props.user?.id ?
+                        <div className="oldCommentContainer">
+                          <h5>Other user {comment.userId.userFirstname}</h5>
+                          <p className='commentText'>{comment.comment}</p>
+                        </div>
+                        :
+                        <div className="oldCommentContainer">
+                          <h5>Current user {comment.userId.userFirstname}</h5>
+                          <div>
+                            <textarea className='commentText' type="text" onChange={(event)=>setModifyComment(event.target.value)} defaultValue={comment.comment}></textarea>
+                            <div className="oldCommentButtonsContainer">
+                              <button id={comment._id} onClick={modifyComment}>Modify comment</button>
+                              <button id={comment._id} onClick={deleteComment}>Delete comment</button>
+                            </div>
+                          </div>
+                        </div>
+                      } 
+                      </>
+                    )}
+                    {props.user !== null ?
+                      <div className="newCommentContainer">
+                          <h5>
+                            Leave us your comment:
+                          </h5>
+                          <div>
+                            <textarea className='commentText' type="text" onChange={(event)=>setInputText(event.target.value)}></textarea>
+                            <button id={Itinerary._id} onClick={uploadComment}>Upload comment</button>
+                          </div>
+                      </div>
+                      :
+                      <div className="newCommentContainer">
+                        <h5>Sign in and leave us your comment.</h5>
+                      </div>
+                    }
                   </AccordionDetails>
                 </Accordion>
               </div>
-            // <>
-            //   <div className="containerItineraryInfo">
-            //     <h3>{Itinerary.itinerary}</h3>
-            //     <div>
-            //       <p>Duration: {Itinerary.duration}</p>
-            //       <p>Price: {Itinerary.price}</p>
-            //       {/* {"💰".repeat(parseInt(itinerariesInfo.price))} */}
-            //       <p>Likes: {Itinerary.likes}</p>
-            //     </div>
-            //   </div>
-            //   <p>{Itinerary.hashtags}</p>
-            //   <div className="authorContainer">
-            //     <p>Author: {Itinerary.creator}</p>
-            //     <img className="imgAuthor" src={process.env.PUBLIC_URL+`/img/${Itinerary.image}`} alt="author" />
-            //   </div>
-            //   </>
             ) : <h4>We are working hard to offer you activities in {props.oneCity[0].name}, please return soon! </h4>
             }
-
-            {/* HASTA AQUI, SE DEBE HACER DINAMICAMENTE CON LOS ITINERARIOS */}
-            
           </div>
-
         </div>
         <LinkRouter className="backCities" to="/cities">
             <ArrowBackIcon fontSize="medium"/>
@@ -102,12 +160,17 @@ function City(props) {
 const mapDispatchToProps = {
   fetchItineraries: itinerariesActions.fetchItineraries,
   fetchOneLocation: citiesActions.fetchOneLocation,
-  fetchOneItinerary: itinerariesActions.fetchOneItinerary
+  fetchOneItinerary: itinerariesActions.fetchOneItinerary,
+  LikeDislike: itinerariesActions.LikeDislike,
+  addComment: commentsActions.addComment,
+  modifyComment: commentsActions.modifyComment,
+  deleteComment: commentsActions.deleteComment,
 }
 const mapStateToProps = (state) => {
   return {
     oneCity: state.citiesReducer.oneCity,
-    cityItineraries: state.itinerariesReducer.cityItineraries
+    cityItineraries: state.itinerariesReducer.cityItineraries,
+    user: state.userReducer.user,
   }
 }
 

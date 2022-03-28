@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useImperativeHandle } from 'react';
 
 const itinerariesActions = {
 //redux no puede utilizar funciones asincronas, por ello, se devuelve (return) con funcion asincrona. 
@@ -14,6 +15,20 @@ const itinerariesActions = {
             dispatch({type:'fetchOneItinerary', payload: res.data.response.itineraries})
         }
     },
-
+    LikeDislike:(itineraryID, userID)=>{
+        const token = localStorage.getItem('token')
+        return async(dispatch, getState)=>{
+            try{
+                const res = await axios.put(`http://localhost:4000/api/LikeDislike/${itineraryID}`,{ userID },
+                {headers: {
+                    'Authorization': 'Bearer ' + token
+                }})
+                return res
+            }catch(error){
+                console.log(error)
+            }
+            dispatch({type: 'LikeDislike'})
+        }
+    },
 }
 export default itinerariesActions;
