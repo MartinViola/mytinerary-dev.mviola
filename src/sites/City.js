@@ -109,13 +109,13 @@ function City(props) {
                       // {comment.userId?._id !== props.user?.id ?
                         <div className="oldCommentContainer">
                           <h5>Other user {comment.userId.userFirstname}</h5>
-                          <p>{comment.comment}</p>
+                          <p className='commentText'>{comment.comment}</p>
                         </div>
                         :
                         <div className="oldCommentContainer">
                           <h5>Current user {comment.userId.userFirstname}</h5>
                           <div>
-                            <textarea type="text" onChange={(event)=>setModifyComment(event.target.value)} defaultValue={comment.comment}></textarea>
+                            <textarea className='commentText' type="text" onChange={(event)=>setModifyComment(event.target.value)} defaultValue={comment.comment}></textarea>
                             <div className="oldCommentButtonsContainer">
                               <button id={comment._id} onClick={modifyComment}>Modify comment</button>
                               <button id={comment._id} onClick={deleteComment}>Delete comment</button>
@@ -131,7 +131,7 @@ function City(props) {
                             Leave us your comment:
                           </h5>
                           <div>
-                            <textarea type="text" onChange={(event)=>setInputText(event.target.value)}></textarea>
+                            <textarea className='commentText' type="text" onChange={(event)=>setInputText(event.target.value)}></textarea>
                             <button id={Itinerary._id} onClick={uploadComment}>Upload comment</button>
                           </div>
                       </div>

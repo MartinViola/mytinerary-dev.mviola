@@ -51,9 +51,9 @@ function MenuAppBar(props) {
               <LinkRouter to="/cities">
                 <Button className="text" key="/cities">Cities</Button>
               </LinkRouter>
-              <LinkRouter to="/userprofile">
+              {/* <LinkRouter to="/userprofile">
                 <Button className="text" key="algo2">Profile</Button>
-              </LinkRouter>
+              </LinkRouter> */}
             </div>
           </div>
           <Typography className="HeaderTitle" variant="h6" component="div" sx={{ flexGrow: 1 }}>MyTinerary</Typography>

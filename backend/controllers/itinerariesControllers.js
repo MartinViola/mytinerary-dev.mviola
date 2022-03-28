@@ -93,7 +93,7 @@ const itinerariesController = {
             }
         }catch(err){
             error = err
-            res.json({success:false, response: error})
+            res.json({success:false, response: error, message: "You need to be logged in!"})            
         }
     },
 }
