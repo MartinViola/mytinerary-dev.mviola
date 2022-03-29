@@ -23,7 +23,7 @@ const itinerariesController = {
         let itineraries
         let error = null
         try{
-            itineraries = await Itineraries.find({city_id:id})
+            itineraries = await Itineraries.find({city_id:id}).populate('comments.userId')
         }catch(err){
             error = err
             console.log(error)

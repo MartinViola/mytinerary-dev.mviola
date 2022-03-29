@@ -6,7 +6,7 @@ const commentsController = {
         const {itinerary, comment} = req.body.comment
         const user = req.user._id
         try{
-            const newComment = await Itineraries.findOneAndUpdate({_id:itinerary}, {$push: {comments: {comment, comment, userId: user}}}, {new:true})
+            const newComment = await Itineraries.findOneAndUpdate({_id:itinerary}, {$push: {comments: {comment, comment, userId: user}}}, {new:true}).populate('comments.userId')
             res.json({success: true, response:{newComment},message:"Thank you for leaving a comment."})
         }
         catch(error){
@@ -19,7 +19,7 @@ const commentsController = {
         const {commentId,comment} = req.body.comment
         const user = req.user._id
         try{
-            const newComment = await Itineraries.findOneAndUpdate({"comments._id":commentId}, {$set: {"comments.$.comment": comment}}, {new: true})
+            const newComment = await Itineraries.findOneAndUpdate({"comments._id":commentId}, {$set: {"comments.$.comment": comment}}, {new: true}).populate('comments.userId')
             res.json({ success: true, response:{newComment}, message:"Your comment has been modified." })
         }
         catch(error){

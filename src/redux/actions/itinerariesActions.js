@@ -12,6 +12,8 @@ const itinerariesActions = {
     fetchOneItinerary:(city_id)=>{
         return async(dispatch, getState)=>{
             const res = await axios.get('http://localhost:4000/api/allitineraries/'+city_id) 
+            console.log("con el populate del controller, resolvi mostrar nombre usuario de comentario")
+            console.log(res)
             dispatch({type:'fetchOneItinerary', payload: res.data.response.itineraries})
         }
     },
