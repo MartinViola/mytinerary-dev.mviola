@@ -10,7 +10,7 @@ function ActivityCard(props) {
     useEffect(()=>{
         props.fetchActionsForOneItinerary(props.itineraryId)
         .then(res=>setActivities(res))
-    },[]);
+    },[props.itineraryId]);
     
     return(
         <>

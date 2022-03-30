@@ -25,11 +25,10 @@ function City(props) {
   const [inputText, setInputText] = useState()
 
   useEffect(()=>{
-    // props.fetchItineraries()
-    props.fetchOneItinerary(_id)
     props.fetchOneLocation(_id)
+    props.fetchOneItinerary(_id)
   },[reload]);
-  
+
   async function LikeFunction (event){
     let itineraryID= event.target.value
     let userID = props.user._id
