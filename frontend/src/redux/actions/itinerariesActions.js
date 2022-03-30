@@ -5,13 +5,13 @@ const itinerariesActions = {
 //redux no puede utilizar funciones asincronas, por ello, se devuelve (return) con funcion asincrona. 
     fetchItineraries:()=>{
         return async(dispatch, getState)=>{
-            const res = await axios.get('http://localhost:4000/api/allitineraries') 
+            const res = await axios.get('https://mytinerary-viola.herokuapp.com/api/allitineraries') 
             dispatch({type:'fetchItineraries', payload:res.data.response.itineraries})
         }
     },
     fetchOneItinerary:(city_id)=>{
         return async(dispatch, getState)=>{
-            const res = await axios.get('http://localhost:4000/api/allitineraries/'+city_id) 
+            const res = await axios.get('https://mytinerary-viola.herokuapp.com/api/allitineraries/'+city_id) 
             dispatch({type:'fetchOneItinerary', payload: res.data.response.itineraries})
         }
     },
@@ -19,7 +19,7 @@ const itinerariesActions = {
         const token = localStorage.getItem('token')
         return async(dispatch, getState)=>{
             try{
-                const res = await axios.put(`http://localhost:4000/api/LikeDislike/${itineraryID}`,{ userID },
+                const res = await axios.put(`https://mytinerary-viola.herokuapp.com/api/LikeDislike/${itineraryID}`,{ userID },
                 {headers: {
                     'Authorization': 'Bearer ' + token
                 }})

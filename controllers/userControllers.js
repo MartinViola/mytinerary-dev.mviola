@@ -21,7 +21,7 @@ const sendEmail = async (email, uniqueString) => {
         from: sender,
         to: email,
         subject: "MyTinerary: User registration validation",
-        html: `Press <a href="http://localhost:4000/api/verify/${uniqueString}">here</a> to validate the user registration`
+        html: `Press <a href="https://mytinerary-viola.herokuapp.com/api/verify/${uniqueString}">here</a> to validate the user registration`
     };
     await transporter.sendMail(mailOptions, function(error,response){
         if(error){

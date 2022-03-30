@@ -4,7 +4,7 @@ const citiesActions = {
 //redux no puede utilizar funciones asincronas, por ello, se devuelve (return) con funcion asincrona. 
     fetchLocations:()=>{
         return async(dispatch, getState)=>{
-            const res = await axios.get('http://localhost:4000/api/alllocations') 
+            const res = await axios.get('https://mytinerary-viola.herokuapp.com/api/alllocations') 
             dispatch({type:'fetch', payload:res.data.response.locations})
         }
     },
@@ -20,7 +20,7 @@ const citiesActions = {
     },
     fetchOneLocation: (id) => {
         return async (dispatch, getState) =>{
-            const res = await axios.get('http://localhost:4000/api/alllocations/'+id) 
+            const res = await axios.get('https://mytinerary-viola.herokuapp.com/api/alllocations/'+id) 
             dispatch({type: 'fetchOneLocation', payload: res.data.response.locations})
         }
     } 
