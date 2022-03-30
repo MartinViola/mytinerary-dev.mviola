@@ -25,17 +25,15 @@ function City(props) {
   const [inputText, setInputText] = useState()
 
   useEffect(()=>{
-    window.scrollTo(0, 0)
-    // props.fetchItineraries()
-    props.fetchOneItinerary(_id)
     props.fetchOneLocation(_id)
+    props.fetchOneItinerary(_id)
   },[reload]);
-  
-  const LikeFunction = (event) => {
+
+  async function LikeFunction (event){
     let itineraryID= event.target.value
     let userID = props.user._id
-    props.LikeDislike(itineraryID, userID)
-    setReload(!reload)
+    await props.LikeDislike(itineraryID, userID)
+    .then(response => setReload(!reload))
   };
   
   async function uploadComment(event){
@@ -105,15 +103,15 @@ function City(props) {
                     <h4 className="titleComments">Comments:</h4>
                     {Itinerary?.comments.map(comment=>
                       <>
-                      {comment?.userId !== props?.user?._id ?
+                      {comment?.userId._id !== props?.user?._id ?
                       // {comment.userId?._id !== props.user?.id ?
                         <div className="oldCommentContainer">
-                          <h5>Other user {comment.userId.userFirstname}</h5>
+                          <h5>{comment.userId.userFirstname}'s comment:</h5>
                           <p className='commentText'>{comment.comment}</p>
                         </div>
                         :
                         <div className="oldCommentContainer">
-                          <h5>Current user {comment.userId.userFirstname}</h5>
+                          <h5>{comment.userId.userFirstname}'s comment:</h5>
                           <div>
                             <textarea className='commentText' type="text" onChange={(event)=>setModifyComment(event.target.value)} defaultValue={comment.comment}></textarea>
                             <div className="oldCommentButtonsContainer">

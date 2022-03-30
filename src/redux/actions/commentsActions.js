@@ -36,6 +36,8 @@ const commentsActions = {
                         'Authorization': `Bearer ${token}`
                     }
                 })
+                console.log("CLG modifyComment")
+                console.log(res)
                 dispatch({
                     type: 'message',
                     payload: {
