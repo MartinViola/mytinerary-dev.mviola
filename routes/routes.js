@@ -6,7 +6,7 @@ const itinerariesController = require('../controllers/itinerariesControllers');
 const usersControllers = require('../controllers/userControllers');
 const activitiesController = require('../controllers/activitiesController')
 const commentsController = require('../controllers/commentsController')
-// const { Route } = require('react-router-dom');
+const { Route } = require('react-router-dom');
 
 const {obtainLocations, uploadLocations, deleteLocations, modifyLocation, obtainOneLocation} = locationsController
 const {obtainItineraries, obtainOneItinerary, uploadNewItinerary, deleteOneItinerary, modifyOneItinerary, LikeDislikeItinerary} = itinerariesController
