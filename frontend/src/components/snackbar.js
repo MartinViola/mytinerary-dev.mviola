@@ -2,7 +2,7 @@
 // import Button from '@mui/material/Button';
 // import Snackbar from '@mui/material/Snackbar';
 // import IconButton from '@mui/material/IconButton';
-// import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from '@mui/icons-material/Close';
 // import { makeStyles } from '@mui/styles';
 // import { styled } from '@mui/system';
 
@@ -10,7 +10,7 @@
 import React from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
+// import CloseIcon from '@material-ui/icons/Close';
 import { makeStyles } from '@material-ui/core/styles';
 import { styled } from '@material-ui/core/styles';
 
