@@ -3,6 +3,10 @@ import HeroImg from '../components/HeroImg';
 import Carrousel from '../components/Carrousel'
 
 function Main() {
+  
+  // useEffect(()=>{
+  //   window.scrollTo(0, 0)
+  // },[]);
 
   return (
     <main>

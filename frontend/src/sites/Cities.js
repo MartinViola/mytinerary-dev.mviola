@@ -13,7 +13,7 @@ import citiesActions from '../redux/actions/citiesActions';
 function CitiesCard(props) {
   
   useEffect(()=>{
-    window.scrollTo(0, 0)
+    // window.scrollTo(0, 0)
     props.fetchLocations()
   },[]);
 
